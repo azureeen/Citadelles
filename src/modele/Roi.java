@@ -15,11 +15,21 @@ public class Roi extends Personnage{
      */
     @Override
     public void utiliserPouvoir() {
-        // TODO : Remplir méthode utiliserPouvoir
+        if(getJoueur() != null && getAssassine() == false){
+            System.out.println("Je prends la couronne");
+            getJoueur().setPossedeCouronne(true);
+        }
     }
 
     @Override
     public void percevoirRessourcesSpecifiques(){
-        // TODO : Remplir Méthode surchargée percevoirRessourcesSpecifiques
+        if(getJoueur() != null && getAssassine() == false){
+            int nbQuartiersNobles = 0;
+            for(Quartier quartier : getJoueur().getCite()){
+                if(quartier != null && quartier.getType() == "NOBLE")nbQuartiersNobles++;
+            }
+            getJoueur().ajouterPieces(nbQuartiersNobles);
+            System.out.println(nbQuartiersNobles + " pièces ont été ajoutées au tresor de " + getJoueur().getNom());
+        }
     }
 }

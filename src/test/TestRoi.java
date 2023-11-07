@@ -8,7 +8,7 @@ import modele.Roi;
 public class TestRoi {
 
 	public static void main(String[] args) {
-		//TestRoi testRoi= new TestRoi();
+		TestRoi testRoi= new TestRoi();
 		//testRoi.test1();
 		//testRoi.test2();	
 		//testRoi.test3();

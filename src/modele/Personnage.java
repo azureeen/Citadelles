@@ -115,7 +115,7 @@ public abstract class Personnage {
      * Ajouter deux pièces au trésor du joueur auquel le personnage est associé
      */
     public void ajouterPieces(){
-        // TODO : Remplir Méthode ajouterPieces
+        if(getJoueur() != null && getAssassine() == false)this.joueur.ajouterPieces(2);
     }
 
     /**
@@ -123,22 +123,21 @@ public abstract class Personnage {
      * @param nouveau : nouveau quartier
      */
     public void ajouterQuartier(Quartier nouveau){
-        // TODO : Remplir Méthode ajouterQuartier
+        if(getJoueur() != null && getAssassine() == false)this.joueur.ajouterQuartierDansMain(nouveau);
     }
-
     /**
      * Ajoute un nouveau quartier dans la cité du joueur
      * @param nouveau : nouveau quartier
      */
     public void construire(Quartier nouveau){
-        // TODO : Remplir Méthode construire
+        if(getJoueur() != null && getAssassine() == false)this.joueur.ajouterQuartierDansCite(nouveau);
     }
 
     /**
      * Affiche par défaut le message aucune ressource spécifique
      */
     public void percevoirRessourcesSpecifiques(){
-        // TODO : Remplir Méthode percevoirRessourcesSpecifiques
+        if(getJoueur() != null && getAssassine() == false)System.out.println("aucune ressource sp´ecifique");
     }
 
     /**
@@ -150,6 +149,8 @@ public abstract class Personnage {
      * Remettre à leur valeur initiale (comme dans le constructeur) les attributs joueur, vole et assassine
      */
     public void reinitialiser(){
-        // TODO : Remplir Méthode reinitialiser
+        this.joueur = null;
+        this.assassine = false;
+        this.vole = false;
     }
 }
