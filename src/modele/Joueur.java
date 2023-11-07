@@ -128,7 +128,6 @@ public class Joueur {
      */
     public boolean quartierPresentDansCite(String quartier) {
         for (int i = 0; i < nbQuartiers; i++) {
-            System.out.println(cite[i].getNom());
             if (cite[i].getNom().equals(quartier)) {
                 return true;
             }
