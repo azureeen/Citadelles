@@ -95,15 +95,18 @@ public class Joueur {
      * @param nbPieces Le nombre de pièces à ajouter
      */
     public void ajouterPieces(int nbPieces) {
-        tresor += nbPieces;
+        if (nbPieces >= 0) {
+            tresor += nbPieces;
+        }
     }
-
     /**
      * Retirer des pièces d’or du trésor du joueur
      * @param nbPieces Le nombre de pièces à retirer
      */
     public void retirerPieces(int nbPieces) {
-        tresor -= nbPieces;
+        if (nbPieces > 0 && nbPieces <= tresor) {
+            tresor -= nbPieces;
+        }
     }
 
     /**
@@ -124,6 +127,7 @@ public class Joueur {
      */
     public boolean quartierPresentDansCite(String quartier) {
         for (int i = 0; i < nbQuartiers; i++) {
+            System.out.println(cite[i].getNom());
             if (cite[i].getNom().equals(quartier)) {
                 return true;
             }

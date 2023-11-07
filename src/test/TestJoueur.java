@@ -7,10 +7,10 @@ public class TestJoueur {
 	public static void main(String[] args){
 		TestJoueur testJoueur = new TestJoueur();
 		testJoueur.test1();
-		//testJoueur.test2();	
-		//testJoueur.test3();
-		//testJoueur.test4();
-		//testJoueur.test5();	
+		testJoueur.test2();
+		testJoueur.test3();
+		testJoueur.test4();
+		testJoueur.test5();
 	}	
 	
 	public void test1(){
