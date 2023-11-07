@@ -33,8 +33,9 @@ public class Quartier {
      * @param nom /
      */
     public void setNom(String nom) {
-        this.nom = nom != null ? type : "";
+        this.nom = nom != null ? nom : "";
     }
+
 
     /**
      * Getter var : type

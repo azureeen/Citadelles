@@ -13,6 +13,7 @@ public class TestQuartier {
 		testQuartier.test7();
 	}
 
+
 	public void test1(){
 		System.out.println("TEST DU CONSTRUCTEUR VIDE");
 		Quartier quartier = new Quartier();
