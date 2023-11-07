@@ -74,91 +74,116 @@ public class Joueur {
         this.possedeCouronne = possedeCouronne;
     }
 
-
     /**
      * Renvoie le nombre quartiers de la cité
-     * @return null
+     * @return Le nombre de quartiers dans la cité
      */
     public Integer nbQuartiersDansCite() {
-        // TODO : Remplir Méthode nbQuartiersDansCite
-        return null;
+        return nbQuartiers;
     }
-
 
     /**
      * Renvoie le nombre quartiers de la main
-     * @return null
+     * @return Le nombre de quartiers dans la main
      */
     public Integer nbQuartiersDansMain() {
-        // TODO : Remplir Méthode nbQuartiersDansMain
-        return null;
+        return main.size();
     }
 
     /**
-     * Ajouter des pièces d’or du trésor du joueur
-     * @param nbPieces /
+     * Ajouter des pièces d’or au trésor du joueur
+     * @param nbPieces Le nombre de pièces à ajouter
      */
-    public void ajouterPieces(int nbPieces){
-       // TODO : Remplir Méthode ajouterPieces
+    public void ajouterPieces(int nbPieces) {
+        tresor += nbPieces;
     }
 
     /**
      * Retirer des pièces d’or du trésor du joueur
-     * @param nbPieces /
+     * @param nbPieces Le nombre de pièces à retirer
      */
-    public void retirerPieces(int nbPieces){
-        // TODO : Remplir Méthode retirerPieces
+    public void retirerPieces(int nbPieces) {
+        tresor -= nbPieces;
     }
-
 
     /**
      * Ajouter un quartier dans la cité
-     * @param quartier /
+     * @param quartier Le quartier à ajouter
      */
-    public void ajouterQuartierDansCite(Quartier quartier){
-        // TODO : Remplir Méthode ajouterQuartierDansCite
+    public void ajouterQuartierDansCite(Quartier quartier) {
+        if (nbQuartiers < cite.length) {
+            cite[nbQuartiers] = quartier;
+            nbQuartiers++;
+        }
     }
 
     /**
      * Renvoie true si le quartier dont le nom est passé en paramètre est présent dans la cité
-     * @param quartier /
-     * @return boolean
+     * @param quartier Le nom du quartier à rechercher
+     * @return true si le quartier est présent, sinon false
      */
-    public boolean quartierPresentDansCite(String quartier){
-        // TODO : Remplir Méthode quartierPresentDansCite
+    public boolean quartierPresentDansCite(String quartier) {
+        for (int i = 0; i < nbQuartiers; i++) {
+            if (cite[i].getNom().equals(quartier)) {
+                return true;
+            }
+        }
         return false;
     }
 
     /**
      * Retire le quartier de la cité dont le nom est donné en paramètre
-     * @param quartier /
+     * @param quartier Le nom du quartier à retirer
+     * @return Le quartier retiré (ou null s'il n'est pas présent)
      */
-    public Quartier retirerQuartierDansCite(String quartier){
-        // TODO : Remplir Méthode retirerQuartierDansCite
-        return null;
+    public Quartier retirerQuartierDansCite(String quartier) {
+        for (int i = 0; i < nbQuartiers; i++) {
+            if (cite[i].getNom().equals(quartier)) {
+                Quartier removedQuartier = cite[i];
+                cite[i] = null;
+                nbQuartiers--;
+                // Shift the remaining quartiers to fill the gap
+                for (int j = i; j < nbQuartiers; j++) {
+                    cite[j] = cite[j + 1];
+                    cite[j + 1] = null;
+                }
+                return removedQuartier;
+            }
+        }
+        return null; // Quartier not found
     }
 
     /**
      * Ajouter un quartier à la main du joueur
-     * @param quartier /
+     * @param quartier Le quartier à ajouter à la main
      */
-    public void ajouterQuartierDansMain(Quartier quartier){
-        // TODO : Remplir Méthode ajouterQuartierDansMain
+    public void ajouterQuartierDansMain(Quartier quartier) {
+        main.add(quartier);
     }
 
     /**
-     * Retirer un quartier à la main du joueur de manière aléatoire
-     * @return quartier
+     * Retirer un quartier de manière aléatoire de la main du joueur
+     * @return Le quartier retiré de la main (or null if the hand is empty)
      */
-    public Quartier retirerQuartierDansMain(){
-        // TODO : Remplir Méthode retirerQuartierDansMain
-        return null;
+    public Quartier retirerQuartierDansMain() {
+        if (!main.isEmpty()) {
+            int randomIndex = (int) (Math.random() * main.size());
+            return main.remove(randomIndex);
+        }
+        return null; // Hand is empty
     }
 
     /**
      * Remet à 0 le trésor du joueur, videra sa main et sa cité
      */
-    public void reinitialiser(){
-        // TODO : Remplir Méthode reinitialiser
+    public void reinitialiser() {
+        tresor = 0;
+        nbQuartiers = 0;
+        possedeCouronne = false;
+        main.clear();
+        for (int i = 0; i < cite.length; i++) {
+            cite[i] = null;
+        }
     }
+
 }
