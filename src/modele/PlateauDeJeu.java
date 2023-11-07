@@ -45,8 +45,12 @@ public class PlateauDeJeu {
      * @return personnage
      */
     public Personnage getPersonnage(int i) {
-        // TODO : Remplir méthode getPersonnage
-        return null;
+
+        Personnage p;
+
+        p=(i>=0 && i<=listePersonnages.length-1) ? listePersonnages[i] : null;
+
+        return p;
     }
 
     /***
@@ -55,8 +59,12 @@ public class PlateauDeJeu {
      * @return personnage
      */
     public Joueur getJoueur(int i) {
-        // TODO : Remplir méthode getJoueur
-        return null;
+
+        Joueur j;
+
+        j=(i>=0 && i<=listePersonnages.length-1) ? listeJoueurs[i] : null;
+
+        return j;
     }
 
     /**
@@ -64,7 +72,25 @@ public class PlateauDeJeu {
      * @param nouveau : nouveau personnage
      */
     public void ajouterPersonnage(Personnage nouveau){
-        // TODO : Remplir méthode ajouterPersonnage
+
+        if(nouveau != null){
+            boolean isFull = true;
+            for(int i=0; i<=listePersonnages.length-1; i++){
+                if(listePersonnages[i] == null) isFull = false;
+            }
+
+            if(!isFull){
+                boolean isAlreadyAdded = false;
+                for(int i=0; i<=listePersonnages.length-1; i++){
+                    if(listePersonnages[i] == null && isAlreadyAdded == false){
+                        listePersonnages[i] = nouveau;
+                        this.nombrePersonnages++;
+                        isAlreadyAdded = true;
+                    }
+                }
+            }
+            nouveau.setPlateau(this);
+        }
     }
 
     /**
@@ -72,6 +98,23 @@ public class PlateauDeJeu {
      * @param nouveau : nouveau joueur
      */
     public void ajouterJoueur(Joueur nouveau){
-        // TODO : Remplir méthode ajouterJoueur
+
+        if(nouveau != null) {
+            boolean isFull = true;
+            for (int i = 0; i <= listeJoueurs.length - 1; i++) {
+                if (listeJoueurs[i] == null) isFull = false;
+            }
+
+            if (!isFull) {
+                boolean isAlreadyAdded = false;
+                for (int i = 0; i <= listeJoueurs.length - 1; i++) {
+                    if (listeJoueurs[i] == null && isAlreadyAdded == false) {
+                        listeJoueurs[i] = nouveau;
+                        this.nombreJoueurs++;
+                        isAlreadyAdded = true;
+                    }
+                }
+            }
+        }
     }
 }
