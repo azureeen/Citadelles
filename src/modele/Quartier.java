@@ -36,6 +36,7 @@ public class Quartier {
         this.nom = nom != null ? nom : "";
     }
 
+
     /**
      * Getter var : type
      * @return type

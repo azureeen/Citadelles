@@ -120,6 +120,7 @@ public class Joueur {
         }
     }
 
+
     /**
      * Renvoie true si le quartier dont le nom est passé en paramètre est présent dans la cité
      * @param quartier Le nom du quartier à rechercher
