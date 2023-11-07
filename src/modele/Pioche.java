@@ -1,6 +1,7 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Pioche {
     private ArrayList<Quartier> liste;
@@ -17,8 +18,16 @@ public class Pioche {
      * @return carte Quartier
      */
     public Quartier piocher(){
-        // TODO : Remplir Méthode piocher
-        return null;
+        Quartier recupVar;
+
+        if(liste.isEmpty()){
+            recupVar = null;
+        }
+        else {
+            recupVar = liste.remove(0);
+        }
+
+        return recupVar;
     }
 
     /**
@@ -26,7 +35,7 @@ public class Pioche {
      * @param nouveau : nouvelle carte quartier
      */
     public void ajouter(Quartier nouveau){
-        // TODO : Remplir Méthode ajouter
+        liste.add(nouveau);
     }
 
     /**
@@ -34,14 +43,23 @@ public class Pioche {
      * @return nombre d’élèments
      */
     public Integer nombreElements(){
-        // TODO : Remplir Méthode nombreElements
-        return null;
+        return liste.size();
     }
 
     /**
      * Permet de mélanger la pioche
      */
     public void melanger(){
-        // TODO : Remplir Méthode melanger
+
+        Random generateur = new Random();
+
+        int i = generateur.nextInt(nombreElements());
+        int j = generateur.nextInt(nombreElements());
+
+        Quartier q1 = liste.get(i);
+        Quartier q2 = liste.get(j);
+
+        liste.set(i,q2);
+        liste.set(j,q1);
     }
 }

@@ -9,11 +9,11 @@ import modele.Roi;
 public class TestPlateauDeJeu {
 
 	public static void main(String[] args) {
-		//TestPlateauDeJeu testPlateau = new TestPlateauDeJeu();
-		//testPlateau.test1();
-		//testPlateau.test2();	
-		//testPlateau.test3();
-		//testPlateau.test4();
+		TestPlateauDeJeu testPlateau = new TestPlateauDeJeu();
+		testPlateau.test1();
+		testPlateau.test2();
+		testPlateau.test3();
+		testPlateau.test4();
 	}
 	
 	public void test1() {
@@ -39,7 +39,7 @@ public class TestPlateauDeJeu {
 		PlateauDeJeu plateau = new PlateauDeJeu();
 		Roi roi = new Roi();
 		plateau.ajouterPersonnage(roi);
-		Test.test(plateau.getNombrePersonnages()== 1,"nombre de joueurs");
+		Test.test(plateau.getNombrePersonnages()== 1,"nombre de personnages");
 		Test.test(plateau.getPersonnage(0)== roi,
 				"r�cup�ration du personnage depuis le tableau");
 	}
