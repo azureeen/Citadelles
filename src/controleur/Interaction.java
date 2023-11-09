@@ -61,6 +61,7 @@ public class Interaction {
         return retour;
     }
 
+
     // Returns a string read from the keyboard
     public static String lireUneChaine() {
         String retour = sc.next();
