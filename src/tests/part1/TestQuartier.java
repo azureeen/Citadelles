@@ -1,4 +1,4 @@
-package test;
+package tests.part1;
 import modele.Quartier;
 
 public class TestQuartier {

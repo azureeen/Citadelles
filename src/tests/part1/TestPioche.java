@@ -1,4 +1,4 @@
-package test;
+package tests.part1;
 
 import modele.Pioche;
 import modele.Quartier;
