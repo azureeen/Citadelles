@@ -1,4 +1,4 @@
-package test;
+package tests.part1;
 
 import modele.Caracteristiques;
 import modele.Joueur;
@@ -9,16 +9,16 @@ public class TestRoi {
 
 	public static void main(String[] args) {
 		TestRoi testRoi= new TestRoi();
-		//testRoi.test1();
-		//testRoi.test2();	
-		//testRoi.test3();
-		//testRoi.test4();
-		//testRoi.test5();
-		//testRoi.test6();
-		//testRoi.test7();
-		//testRoi.test8();
-		//testRoi.test9();
-		//testRoi.test10();
+		testRoi.test1();
+		testRoi.test2();
+		testRoi.test3();
+		testRoi.test4();
+		testRoi.test5();
+		testRoi.test6();
+		testRoi.test7();
+		testRoi.test8();
+		testRoi.test9();
+		testRoi.test10();
 	}
 	
 	public void test1(){

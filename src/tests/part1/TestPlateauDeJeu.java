@@ -1,9 +1,7 @@
-package test;
+package tests.part1;
 
-import modele.Caracteristiques;
 import modele.Joueur;
 import modele.PlateauDeJeu;
-import modele.Quartier;
 import modele.Roi;
 
 public class TestPlateauDeJeu {
