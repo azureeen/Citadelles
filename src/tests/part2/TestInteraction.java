@@ -1,14 +1,15 @@
-/*package tests.part2;
+package tests.part2;
 
 import controleur.Interaction;
+import tests.part1.Test;
 
 public class TestInteraction {
 	public static void main(String[] args){
 		TestInteraction test = new TestInteraction();
 		test.test1();
-		//test.test2();
-		//test.test3();
-		//test.test4();
+		test.test2();
+		test.test3();
+        test.test4();
 	}	
 	
 	public void test1(){
@@ -44,4 +45,4 @@ public class TestInteraction {
 		Test.test(s.length()!=0, "test de saisie d'une cha�ne de caract�res");
 	}
 }
-*/
+
