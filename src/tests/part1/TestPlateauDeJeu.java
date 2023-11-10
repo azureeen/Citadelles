@@ -3,6 +3,7 @@ package tests.part1;
 import modele.Joueur;
 import modele.PlateauDeJeu;
 import modele.Roi;
+import tests.Test;
 
 public class TestPlateauDeJeu {
 

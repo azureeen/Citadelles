@@ -54,6 +54,14 @@ public class PlateauDeJeu {
     }
 
     /***
+     * Renvoie la liste des personnages
+     * @return listePersonnages
+     */
+    public Personnage[] getListPersonnages() {
+        return this.listePersonnages;
+    }
+
+    /***
      * Renvoie le i ème joueur du tableau listeJoueurs
      * @param i : index dans le tableau
      * @return personnage

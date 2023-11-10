@@ -4,6 +4,7 @@ import modele.Caracteristiques;
 import modele.Joueur;
 import modele.Quartier;
 import modele.Roi;
+import tests.Test;
 
 public class TestRoi {
 

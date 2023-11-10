@@ -59,9 +59,12 @@ public abstract class Personnage {
 
     /**
      * Associe le joueur j au personnage
-     * @param joueur /
+     * @param joueur 
      */
-    public void setJoueur(Joueur joueur) {this.joueur.monPersonnage = this;}
+    public void setJoueur(Joueur joueur) {
+        this.joueur = joueur;
+        this.joueur.monPersonnage = this;
+    }
 
     /**
      * Renvoie si le personnage est assassiné ou non
@@ -88,8 +91,13 @@ public abstract class Personnage {
 
     /**
      * Met l’attribut assassine à true
+     * @param args : Si non vide, cet objet contient le personnage qui vole un autre
      */
-    public void setVole() {
+    public void setVole(Object... args) {
+        if(args.length > 0 && args[0] != null ) {
+            ((Personnage) args[0]).getJoueur().ajouterPieces(this.joueur.nbPieces());
+            this.joueur.retirerPieces(this.joueur.nbPieces());
+        }
         this.vole = true;
     }
 
