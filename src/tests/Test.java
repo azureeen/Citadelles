@@ -1,4 +1,4 @@
-package tests.part1;
+package tests;
 
 public class Test {
 	public static void test(boolean passed, String message) {
