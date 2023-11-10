@@ -11,6 +11,7 @@ public class Joueur {
     private Integer nbQuartiers;
     private ArrayList<Quartier> main;
     private boolean possedeCouronne;
+    protected Personnage monPersonnage;
 
     /**
      * Constructeur Joueur
@@ -23,6 +24,7 @@ public class Joueur {
         this.possedeCouronne = false;
         this.cite = new Quartier[8];
         this.main = new ArrayList<Quartier>();
+        this.monPersonnage = null;
     }
 
     /**
@@ -73,6 +75,13 @@ public class Joueur {
     public void setPossedeCouronne(boolean possedeCouronne) {
         this.possedeCouronne = possedeCouronne;
     }
+
+    /**
+     * Renvoie la valeur de l'attribut monPersonnage
+     * @return l'attribut monPersonnage
+     */
+    public Personnage getmonPersonnage(){return this.monPersonnage;}
+
 
     /**
      * Renvoie le nombre quartiers de la cité

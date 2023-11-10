@@ -61,9 +61,7 @@ public abstract class Personnage {
      * Associe le joueur j au personnage
      * @param joueur /
      */
-    public void setJoueur(Joueur joueur) {
-        this.joueur = joueur;
-    }
+    public void setJoueur(Joueur joueur) {this.joueur.monPersonnage = this;}
 
     /**
      * Renvoie si le personnage est assassiné ou non
@@ -115,7 +113,7 @@ public abstract class Personnage {
      * Ajouter deux pièces au trésor du joueur auquel le personnage est associé
      */
     public void ajouterPieces(){
-        if(getJoueur() != null && getAssassine() == false)this.joueur.ajouterPieces(2);
+        if(getJoueur() != null && !getAssassine())this.joueur.ajouterPieces(2);
     }
 
     /**
@@ -123,21 +121,21 @@ public abstract class Personnage {
      * @param nouveau : nouveau quartier
      */
     public void ajouterQuartier(Quartier nouveau){
-        if(getJoueur() != null && getAssassine() == false)this.joueur.ajouterQuartierDansMain(nouveau);
+        if(getJoueur() != null && !getAssassine())this.joueur.ajouterQuartierDansMain(nouveau);
     }
     /**
      * Ajoute un nouveau quartier dans la cité du joueur
      * @param nouveau : nouveau quartier
      */
     public void construire(Quartier nouveau){
-        if(getJoueur() != null && getAssassine() == false)this.joueur.ajouterQuartierDansCite(nouveau);
+        if(getJoueur() != null && !getAssassine())this.joueur.ajouterQuartierDansCite(nouveau);
     }
 
     /**
      * Affiche par défaut le message aucune ressource spécifique
      */
     public void percevoirRessourcesSpecifiques(){
-        if(getJoueur() != null && getAssassine() == false)System.out.println("aucune ressource sp´ecifique");
+        if(getJoueur() != null && !getAssassine())System.out.println("aucune ressource sp´ecifique");
     }
 
     /**
@@ -149,8 +147,8 @@ public abstract class Personnage {
      * Remettre à leur valeur initiale (comme dans le constructeur) les attributs joueur, vole et assassine
      */
     public void reinitialiser(){
-        this.joueur = null;
         this.assassine = false;
         this.vole = false;
+        if (this.joueur != null)this.joueur.monPersonnage = null;
     }
 }
