@@ -67,6 +67,11 @@ public class PlateauDeJeu {
         return j;
     }
 
+
+    public Joueur[] getListeJoueurs()
+    {
+        return this.listeJoueurs;
+    }
     /**
      * Ajouter un nouveau personnage dans le plateau de jeu
      * @param nouveau : nouveau personnage
