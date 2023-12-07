@@ -1,7 +1,8 @@
 package tests.part2;
 
-import controleur.Interaction;
-import tests.Test;
+import Controleur.Interaction;
+import tests.part1.Test;
+
 
 public class TestInteraction {
 	public static void main(String[] args){

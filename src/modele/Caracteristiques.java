@@ -5,113 +5,113 @@ public class Caracteristiques {
 		"L'assassin peut tuer un personnage de son choix. " +
 		"Celui-ci ne jouera pas ce tour-ci.";
 	public static String ECHEVIN= 
-		"L'échevin place des mandats de réquisition, face cachée, " +
-		"sous 3 jetons Personnage différents. Il peut révéler le " +
-		"mandat signé pour confisquer le premier quartier bâti par " +
-		"le joueur ciblé, qui récupère le coût de construction.";
+		"L'Ã©chevin place des mandats de rÃ©quisition, face cachÃ©e, " +
+		"sous 3 jetons Personnage diffÃ©rents. Il peut rÃ©vÃ©ler le " +
+		"mandat signÃ© pour confisquer le premier quartier bÃ©ti par " +
+		"le joueur ciblÃ©, qui rÃ©cupÃ©rÃ© le coÃ»t de construction.";
 	public static String SORCIERE=
-		"Après avoir pris or ou carte, la Sorcière ensorcelle un " +
+		"AprÃ¨s avoir pris or ou carte, la SorciÃ¨re ensorcelle un " +
 		"personnage et interrompt son tour. Elle le terminera en " +
-		"jouant à la place du personnage ensorcelé";
+		"jouant Ã  la place du personnage ensorcelÃ©";
 	public static String MAITRE_CHANTEUSE=
-		"La Maître-chanteuse place des menaces, face cachée, sous " +
-		"2 jetons Personnage différents. Un personnage menacé peut " +
-		"lui payer la moitié de son or pour retirer la menace. Si " +
-		"la Maître-chanteuse révèle le vrai jeton Menace, elle " +
-		"prend tout l'or du joueur ciblé";
+		"La MaÃ®tre-chanteuse place des menaces, face cachÃ©e, sous " +
+		"2 jetons Personnage diffÃ©rents. Un personnage menacÃ© peut " +
+		"lui payer la moitiÃ© de son or pour retirer la menace. Si " +
+		"la MaÃ®tre-chanteuse rÃ©vÃ¨le le vrai jeton Menace, elle " +
+		"prend tout l'or du joueur ciblÃ©";
 	public static String ESPION=
 		"L'Espion choisit un type (couleur) de quartier et regarde " +
 		"la main d'un autre joueur. Pour chaque quartier du type " +
-		"indiqué, il reçoit 1 pièce d'or de ce joueur et pioche 1 " +
+		"indiquÃ©, il reÃ§oit 1 piÃ©ce d'or de ce joueur et pioche 1 " +
 		"carte Quartier.";
 	public static String VOLEUR=
-		"Le Voleur peut piller le trésor du personnage de son choix. " +
-		"Quand le personnage détroussé sera révélé, il donnera tout " +
+		"Le Voleur peut piller le trÃ©sor du personnage de son choix. " +
+		"Quand le personnage dÃ©troussÃ© sera rÃ©vÃ©lÃ©, il donnera tout " +
 		"son or au Voleur.";
 	public static String MAGICIENNE=
-		"La Magicienne peut, au choix : soit échanger la totalité " +
+		"La Magicienne peut, au choix : soit Ã©changer la totalitÃ© " +
 		"des cartes de sa main avec celle d'un autre joueur, soit " +
-		"échanger des cartes de sa main contre le même nombre de " +
+		"Ã©changer des cartes de sa main contre le mÃ©me nombre de " +
 		"cartes de la pioche.";
 	public static String SORCIER=
 		"Le Sorcier choisit 1 carte dans la main d'un autre joueur " +
-		"et peut soit payer son coût pour la bâtir, soit l'ajouter " +
-		"à sa main. Il peut bâtir des quartiers identiques à "+
-		"d'autres quartiers de sa cité.";
+		"et peut soit payer son coÃ©t pour la bÃ¢tir, soit l'ajouter " +
+		"Ã  sa main. Il peut bÃ¢tir des quartiers identiques Ã  "+
+		"d'autres quartiers de sa citÃ©.";
 	public static String VOYANTE=
 		"La Voyante prend 1 carte au hasard dans la main de chaque " +
-		"joueur, puis donne à chacun 1 carte de son choix. Son " +
+		"joueur, puis donne Ã  chacun 1 carte de son choix. Son " +
 		"permis de construire est de 2 quartiers.";
 	public static String EMPEREUR=
-		"L'Empereur donne la Couronne à un autre joueur, qui lui " +
-		"paie 1 pièce d'or ou 1 carte. Chaque quartier Noble dans " +
-		"sa cité lui rapporte 1 pièce d'or.";
+		"L'Empereur donne la Couronne Ã  un autre joueur, qui lui " +
+		"paie 1 piÃ©ce d'or ou 1 carte. Chaque quartier Noble dans " +
+		"sa citÃ© lui rapporte 1 piÃ©ce d'or.";
 	public static String PATRICIEN=
 		"Le Patricien prend la Couronne et choisira en premier " +
 		"en premier son Personnage lors du prochain tour. " +
-		"Chaque quartier Noble dans sa cité lui rapporte 1 " +
-		"pièce d'or.";
+		"Chaque quartier Noble dans sa citÃ© lui rapporte 1 " +
+		"piÃ©ce d'or.";
 	public static String ROI = 
 		"Le Roi prend la Couronne et choisira " +
 		"en premier son personnage lors du prochain tour." +
-		"Chaque quartier Noble dans sa cité lui rapporte 1 " +
-		"pièce d'or.";
+		"Chaque quartier Noble dans sa citÃ© lui rapporte 1 " +
+		"piÃ©ce d'or.";
 	public static String ABBE=
-		"Le joueur le plus riche doit donner 1 pièce d'or à l'Abbé." +
-		"Chaque quartier Religieux dans sa cité lui rapport 1 pièce " +
+		"Le joueur le plus riche doit donner 1 piÃ©ce d'or Ã  l'AbbÃ©." +
+		"Chaque quartier Religieux dans sa citÃ© lui rapport 1 piÃ©ce " +
 		"d'or ou 1 carte.";
 	public static String CARDINAL=
-		"Si le Cardinal n'a pas assez d'or pour bâtir un quartier, " +
-		"il peut le prendre à un joueur en échange de carte (1 " +
-		"carte = 1 pièce d'or). Chaque quartier Religieux dans sa " +
-		"cité lui rapport 1 carte quartier.";
+		"Si le Cardinal n'a pas assez d'or pour bÃ¢tir un quartier, " +
+		"il peut le prendre Ã  un joueur en Ã©change de carte (1 " +
+		"carte = 1 piÃ©ce d'or). Chaque quartier Religieux dans sa " +
+		"citÃ© lui rapport 1 carte quartier.";
 	public static String EVEQUE=
-		"La cité de l'Evêque est protégée contre les personnages " +
+		"La citÃ© de l'Ã‰vÃ©que est protÃ©gÃ©e contre les personnages " +
 		"de rang 8 (gemme rouge). Chaque quartier Religieux dans sa "+
-		"cité lui rapport 1 pièce d'or";
+		"citÃ© lui rapport 1 piÃ©ce d'or";
 	public static String ALCHIMISTE=
-		"A la fin de son tour, l'Alchimiste récupère l'or qu'il a " +
-		"dépensé pour bâtir des quartiers durant son tour.";
+		"A la fin de son tour, l'Alchimiste rÃ©cupÃ¨re l'or qu'il a " +
+		"dÃ©pensÃ© pour bÃ¢tir des quartiers durant son tour.";
 	public static String MARCHANDE=
-		"La Marchande reçoit 1 pièce d'or supplémentaire. Chaque " +
-		"quartier Commerçant dans sa cité lui rapporte 1 pièce d'or.";
+		"La Marchande reÃ§oit 1 piÃ©ce d'or supplÃ©mentaire. Chaque " +
+		"quartier CommerÃ§ant dans sa citÃ© lui rapporte 1 piÃ©ce d'or.";
 	public static String NEGOCIANT=
-		"Le Négociant peut bâtir des quartiers Commerçants sans " +
-		"restrictions. Chaque quartier Commerçant dans sa cité " +
-		"lui rapporte 1 pièce d'or.";
+		"Le NÃ©gociant peut bÃ¢tir des quartiers CommerÃ§ants sans " +
+		"restrictions. Chaque quartier CommerÃ§ant dans sa citÃ© " +
+		"lui rapporte 1 piÃ©ce d'or.";
 	public static String ARCHITECTE=
-		"L'Architecte pioche 2 cartes supplémentaires. Son permis " +
+		"L'Architecte pioche 2 cartes supplÃ©mentaires. Son permis " +
 		"de construire est de 3 quartiers.";
 	public static String ARCHIVISTE=
 		"L'Archiviste pioche 7 cartes et en conserve 1 de son choix. " +
 		"Son permis de construire est de 2 quartiers.";
 	public static String NAVIGATRICE=
-		"La Navigatrice gagne 4 pièce d'or ou 4 cartes. Elle ne " +
-		"ne peut bâtir de quartiers.";
+		"La Navigatrice gagne 4 piÃ©ce d'or ou 4 cartes. Elle ne " +
+		"ne peut bÃ¢tir de quartiers.";
 	public static String CAPITAINE=
-		"Le Capitaine peut confisquer un quartier de coût inférieur " +
-		"ou égal à 3, en payant son coût à son propriétaire." +
-		"Chaque quartier Militaire dans sa cité lui rapporte 1 " +
-		"pièce d'or.";
+		"Le Capitaine peut confisquer un quartier de coÃ»t infÃ©rieur " +
+		"ou Ã©gal Ã  3, en payant son coÃ»t Ã  son propriÃ©taire." +
+		"Chaque quartier Militaire dans sa citÃ© lui rapporte 1 " +
+		"piÃ©ce d'or.";
 	public static String DIPLOMATE=
-		"Le Diplomate peut échanger l'un de ses quartiers bâtis " +
+		"Le Diplomate peut Ã©changer l'un de ses quartiers bÃ¢tis " +
 		"avec un quartier adverse. Chaque quartier Militaire " +
-		"dans sa cité lui rapporte 1 pièce d'or.";
+		"dans sa citÃ© lui rapporte 1 piÃ©ce d'or.";
 	public static String CONDOTTIERE=
-		"Le Condottiere peut détruire un quartier en payant " +
-		"son coût de construction moins 1. " +
-		"Chaque quartier Militaire dans sa cité lui rapporte 1 " +
-		"pièce d'or.";
+		"Le Condottiere peut dÃ©truire un quartier en payant " +
+		"son coÃ©t de construction moins 1. " +
+		"Chaque quartier Militaire dans sa citÃ© lui rapporte 1 " +
+		"piÃ©ce d'or.";
 	public static String ARTISTE=
 		"L'Artiste peut embellir un ou deux de ses quartiers en " +
-		"leur assignant 1 pièce d'or. Un même quartier ne peut être " +
+		"leur assignant 1 piÃ©ce d'or. Un mÃ©me quartier ne peut Ãªtre " +
 		"embelli qu'une seule fois.";
 	public static String BAILLI=
-		"Chaque fois qu'un joueur bâtit un quartier, il doit placer " +
-		"1 pièce d'or sur le jeton Bailli. Prenez toutes les pièces" +
+		"Chaque fois qu'un joueur bÃ¢tit un quartier, il doit placer " +
+		"1 piÃ©ce d'or sur le jeton Bailli. Prenez toutes les piÃ©ces" +
 		"d'or sur le jeton Bailli.";
 	public static String REINE=
-		"Si la Reine est à côté du joueur qui a choisi la carte " +
-		"du personnage de rang 4 (gemme jaune), elle reçoit 3 " +
-		"pièces d'or.";
+		"Si la Reine est Ã  cÃ´tÃ© du joueur qui a choisi la carte " +
+		"du personnage de rang 4 (gemme jaune), elle reÃ§oit 3 " +
+		"piÃ©ces d'or.";
 }

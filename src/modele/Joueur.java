@@ -1,17 +1,25 @@
 package modele;
 
-
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Joueur {
 
-    private String nom;
+    private final String nom;
     private Integer tresor;
-    private Quartier[] cite;
+    private final Quartier[] cite;
     private Integer nbQuartiers;
-    private ArrayList<Quartier> main;
+    private Integer nbQuartiersMonument;
+    private final ArrayList<Quartier> main;
     private boolean possedeCouronne;
     protected Personnage monPersonnage;
+    protected Personnage[] mesPersonnages;
+    private boolean aFini;
+    private int points;
+    private boolean possedeManu;
+    private boolean possedeCarriere;
+    private boolean possedeEcoleMag;
+
 
     /**
      * Constructeur Joueur
@@ -22,9 +30,12 @@ public class Joueur {
         this.tresor = 0;
         this.nbQuartiers = 0;
         this.possedeCouronne = false;
+        this.possedeCarriere = false;
+        this.possedeEcoleMag = false;
         this.cite = new Quartier[8];
         this.main = new ArrayList<Quartier>();
         this.monPersonnage = null;
+        this.mesPersonnages = new Personnage[2];
     }
 
     /**
@@ -77,6 +88,93 @@ public class Joueur {
     }
 
     /**
+     *
+     * @param bool /
+     */
+    public void setPossedeEcoleMag(boolean bool){
+        this.possedeEcoleMag = bool;
+    }
+
+    /**
+     *
+     * @return bool
+     */
+    public boolean getPossedeEcoleMag(){
+        return this.possedeEcoleMag;
+    }
+
+    /**
+     *
+     * @return /
+     */
+    public boolean getPossedeManu() {
+        return possedeManu;
+    }
+
+    /**
+     *
+     * @param possedeManu -/
+     */
+    public void setPossedeManu(boolean possedeManu) {
+        this.possedeManu = possedeManu;
+    }
+
+    /**
+     *
+     * @param bool /
+     */
+    public void setPossedeCarriere(boolean bool){
+        this.possedeCarriere = bool;
+    }
+
+    /**
+     *
+     * @return /
+     */
+    public boolean getPossedeCarriere(){
+        return this.possedeCarriere;
+    }
+
+    /**
+     *
+     * @return //
+     */
+    public int getPoints(){
+        return this.points;
+    }
+
+    /**
+     *
+     * @param points /
+     */
+    public void setPoints(int points){
+        this.points = points;
+    }
+
+    /**
+     *
+     * @return /
+     */
+    public boolean getAFini(){
+        return this.aFini;
+    }
+
+    /**
+     *
+     * @param choix /
+     */
+    public void setAFini(boolean choix){
+        this.aFini = choix;
+    }
+
+    /**
+     * Getter var : monPersonnage
+     * @return /
+     */
+    public Personnage getPersonnage(){
+        return this.monPersonnage;
+    }
+
      * Renvoie la valeur de l'attribut monPersonnage
      * @return l'attribut monPersonnage
      */
@@ -89,6 +187,14 @@ public class Joueur {
      */
     public Integer nbQuartiersDansCite() {
         return nbQuartiers;
+    }
+
+    /**
+     *
+     * @return /
+     */
+    public int nbQuartiersMonumentDansCite(){
+        return this.nbQuartiersMonument;
     }
 
     /**
@@ -112,9 +218,15 @@ public class Joueur {
      * Retirer des pièces d’or du trésor du joueur
      * @param nbPieces Le nombre de pièces à retirer
      */
-    public void retirerPieces(int nbPieces) {
-        if (nbPieces > 0 && nbPieces <= tresor) {
-            tresor -= nbPieces;
+    public void retirerPieces(int nbPieces){
+        if(nbPieces >= 0){
+            if(tresor-nbPieces < 0){
+                System.out.println("trop grand nombre de pièces");
+            }else{
+                this.tresor -= nbPieces;
+            }
+        }else{
+            System.out.println("le nombre de pièces passé en paramètre n'est pas valable");
         }
     }
 
@@ -171,7 +283,9 @@ public class Joueur {
      * @param quartier Le quartier à ajouter à la main
      */
     public void ajouterQuartierDansMain(Quartier quartier) {
-        main.add(quartier);
+        if(!(quartier==null)){
+            main.add(quartier);
+        }
     }
 
     /**
@@ -187,16 +301,33 @@ public class Joueur {
     }
 
     /**
+     * Retirer un quartier de manière arbitraire de la main du joueur
+     * @param quartier /
+     * @return Quartier
+     */
+    public Quartier retirerQuartierDansMain(Quartier quartier){
+        Quartier q;
+        if(main.isEmpty()){
+            q= quartier;
+        }else{
+            main.remove(quartier);
+            q = quartier;
+        }
+        return q;
+    }
+
+    /**
      * Remet à 0 le trésor du joueur, videra sa main et sa cité
      */
     public void reinitialiser() {
-        tresor = 0;
-        nbQuartiers = 0;
-        possedeCouronne = false;
-        main.clear();
-        for (int i = 0; i < cite.length; i++) {
-            cite[i] = null;
-        }
+        this.nbQuartiers = 0;
+        this.nbQuartiersMonument = 0;
+        this.setAFini(false);
+        this.setPoints(0);
+        this.tresor = 0;
+        this.main.clear();
+        this.possedeCouronne = false;
+        Arrays.fill(cite, null);
     }
 
 }

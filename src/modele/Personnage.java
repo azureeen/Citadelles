@@ -9,20 +9,29 @@ public abstract class Personnage {
     private boolean assassine;
     private boolean vole;
     private PlateauDeJeu plateau;
+    protected boolean ensorcele;
+    protected boolean vraiEchevin;
+    protected boolean fauxEchevin;
+    protected boolean vraieMenace;
+    protected boolean fausseMenace;
+
 
     /**
      * Constructeur Personnage
-     * @param nom : nom du personnage
-     * @param rang : rang du personnage
-     * @param caracteristiques : caracteristiques du personnage
+     * @param args : Objet d'arguments
      */
-    public Personnage(String nom, Integer rang, String caracteristiques) {
-        this.nom = nom;
-        this.rang = rang;
-        this.caracteristiques = caracteristiques;
+    public Personnage(Object... args) {
+        setNom(args.length > 0 && args[0] != null ? (String) args[0] : "");
+        setRang(args.length > 1 && args[1] != null ? (Integer) args[1] : 0);
+        setCaracteristiques(args.length > 2 && args[2] != null ? (String) args[2] : "");
         this.joueur = null;
         this.assassine = false;
         this.vole = false;
+        this.ensorcele = false;
+        this.vraiEchevin = false;
+        this.fauxEchevin = false;
+        this.vraieMenace = false;
+        this.fausseMenace = false;
     }
 
     /**
@@ -34,6 +43,14 @@ public abstract class Personnage {
     }
 
     /**
+     * Setter var : nom
+     * @param nom /
+     */
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    /**
      * Renvoie le rang du personnage
      * @return rang
      */
@@ -42,11 +59,27 @@ public abstract class Personnage {
     }
 
     /**
+     * Setter var : rang
+     * @param rang /
+     */
+    public void setRang(Integer rang) {
+        this.rang = rang;
+    }
+
+    /**
      * Renvoie les caracteristiques du personnage
      * @return caracteristiques
      */
     public String getCaracteristiques() {
         return caracteristiques;
+    }
+
+    /**
+     * Setter var : caracteristiques
+     * @param caracteristiques /
+     */
+    public void setCaracteristiques(String caracteristiques){
+        this.caracteristiques = caracteristiques;
     }
 
     /**
@@ -118,6 +151,86 @@ public abstract class Personnage {
     }
 
     /**
+     * TODO : comment get
+     * @return
+     */
+    public boolean getEnsorcele() {
+        return ensorcele;
+    }
+
+    /**
+     *
+     * @param bool
+     */
+    public void setVraiEchevin(boolean bool) {
+        this.vraiEchevin = bool;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean getVraiEchevin() {
+        return this.vraiEchevin;
+    }
+
+    /**
+     *
+     * @param bool
+     */
+    public void setFauxEchevin(boolean bool) {
+        this.fauxEchevin = bool;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean getFauxEchevin() {
+        return this.fauxEchevin;
+    }
+
+    /**
+     *
+     * @param bool
+     */
+    public void setFausseMenace(boolean bool) {
+        this.fausseMenace = bool;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean getFausseMenace() {
+        return this.fausseMenace;
+    }
+
+    /**
+     *
+     * @param bool
+     */
+    public void setVraieMenace(boolean bool) {
+        this.vraieMenace = bool;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean getVraieMenace() {
+        return this.vraieMenace;
+    }
+
+    /**
+     *
+     * @param ensorcele
+     */
+    public void setEnsorcele(boolean ensorcele) {
+        this.ensorcele = ensorcele;
+    }
+
+    /**
      * Ajouter deux pièces au trésor du joueur auquel le personnage est associé
      */
     public void ajouterPieces(){
@@ -155,8 +268,14 @@ public abstract class Personnage {
      * Remettre à leur valeur initiale (comme dans le constructeur) les attributs joueur, vole et assassine
      */
     public void reinitialiser(){
-        this.assassine = false;
+        this.joueur = null; // à enlever ?
         this.vole = false;
+        this.assassine = false;
+        this.ensorcele = false;
         if (this.joueur != null)this.joueur.monPersonnage = null;
     }
+
+    public abstract void utiliserPouvoirAvatar();
+
+    public abstract void activationPouvoirSorciere(Joueur joueurSorciere);
 }

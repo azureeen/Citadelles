@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Pioche {
-    private ArrayList<Quartier> liste;
+    private final ArrayList<Quartier> liste;
 
     /**
      * Constructeur Pioche
