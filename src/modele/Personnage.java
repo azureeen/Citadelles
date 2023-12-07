@@ -92,7 +92,7 @@ public abstract class Personnage {
 
     /**
      * Associe le joueur j au personnage
-     * @param joueur /
+     * @param joueur 
      */
     public void setJoueur(Joueur joueur) {
         this.joueur = joueur;
@@ -124,8 +124,13 @@ public abstract class Personnage {
 
     /**
      * Met l’attribut assassine à true
+     * @param args : Si non vide, cet objet contient le personnage qui vole un autre
      */
-    public void setVole() {
+    public void setVole(Object... args) {
+        if(args.length > 0 && args[0] != null ) {
+            ((Personnage) args[0]).getJoueur().ajouterPieces(this.joueur.nbPieces());
+            this.joueur.retirerPieces(this.joueur.nbPieces());
+        }
         this.vole = true;
     }
 
@@ -229,7 +234,7 @@ public abstract class Personnage {
      * Ajouter deux pièces au trésor du joueur auquel le personnage est associé
      */
     public void ajouterPieces(){
-        if(getJoueur() != null && getAssassine() == false)this.joueur.ajouterPieces(2);
+        if(getJoueur() != null && !getAssassine())this.joueur.ajouterPieces(2);
     }
 
     /**
@@ -237,21 +242,21 @@ public abstract class Personnage {
      * @param nouveau : nouveau quartier
      */
     public void ajouterQuartier(Quartier nouveau){
-        if(getJoueur() != null && getAssassine() == false)this.joueur.ajouterQuartierDansMain(nouveau);
+        if(getJoueur() != null && !getAssassine())this.joueur.ajouterQuartierDansMain(nouveau);
     }
     /**
      * Ajoute un nouveau quartier dans la cité du joueur
      * @param nouveau : nouveau quartier
      */
     public void construire(Quartier nouveau){
-        if(getJoueur() != null && getAssassine() == false)this.joueur.ajouterQuartierDansCite(nouveau);
+        if(getJoueur() != null && !getAssassine())this.joueur.ajouterQuartierDansCite(nouveau);
     }
 
     /**
      * Affiche par défaut le message aucune ressource spécifique
      */
     public void percevoirRessourcesSpecifiques(){
-        if(getJoueur() != null && getAssassine() == false)System.out.println("aucune ressource sp´ecifique");
+        if(getJoueur() != null && !getAssassine())System.out.println("aucune ressource sp´ecifique");
     }
 
     /**
@@ -267,6 +272,7 @@ public abstract class Personnage {
         this.vole = false;
         this.assassine = false;
         this.ensorcele = false;
+        if (this.joueur != null)this.joueur.monPersonnage = null;
     }
 
     public abstract void utiliserPouvoirAvatar();

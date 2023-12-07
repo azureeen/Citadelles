@@ -63,6 +63,8 @@ public class PlateauDeJeu {
      * @return listePersonnages
      */
     public Personnage[] getListePersonnages() {
+
+    public Personnage[] getListPersonnages() {
         return this.listePersonnages;
     }
 

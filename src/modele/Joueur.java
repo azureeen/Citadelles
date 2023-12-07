@@ -1,6 +1,5 @@
 package modele;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -20,6 +19,7 @@ public class Joueur {
     private boolean possedeManu;
     private boolean possedeCarriere;
     private boolean possedeEcoleMag;
+
 
     /**
      * Constructeur Joueur
@@ -174,6 +174,11 @@ public class Joueur {
     public Personnage getPersonnage(){
         return this.monPersonnage;
     }
+
+     * Renvoie la valeur de l'attribut monPersonnage
+     * @return l'attribut monPersonnage
+     */
+    public Personnage getmonPersonnage(){return this.monPersonnage;}
 
 
     /**

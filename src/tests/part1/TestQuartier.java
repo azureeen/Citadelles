@@ -1,5 +1,6 @@
 package tests.part1;
 import modele.Quartier;
+import tests.Test;
 
 public class TestQuartier {
 	public static void main(String[] args){

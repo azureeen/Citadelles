@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class Roi extends Personnage{
 
-
     /**
      * Constructeur Roi
      */
@@ -29,6 +28,9 @@ public class Roi extends Personnage{
         }
     }
 
+    /**
+     * Precevoir ressources spécifiques du Roi
+     */
     @Override
     public void percevoirRessourcesSpecifiques(){
         if(getJoueur() != null && !getAssassine()){
