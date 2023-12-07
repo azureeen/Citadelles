@@ -18,7 +18,7 @@ public class Abbe extends Personnage{
         if(this.getAssassine()){
             System.out.println("Votre personnage a été assassiné");
         }else{
-            for(int i = 0; i < this.getJoueur().nbQuartiersReelDansCite(); i++){
+            for(int i = 0; i < this.getJoueur().nbQuartiersDansCite(); i++){
                 if(this.getJoueur().getCite()[i]!=null){
 					if(this.getJoueur().getCite()[i].getType().equals(Quartier.TYPE_QUARTIERS[0])){
 						count++;
@@ -74,7 +74,7 @@ public class Abbe extends Personnage{
         if(this.getAssassine()){
             System.out.println("Votre personnage a été assassiné");
         }else{
-            for(int i = 0; i < this.getJoueur().nbQuartiersReelDansCite(); i++){
+            for(int i = 0; i < this.getJoueur().nbQuartiersDansCite(); i++){
 				if(this.getJoueur().getCite()[i]!=null){
 					if(this.getJoueur().getCite()[i].getType().equals(Quartier.TYPE_QUARTIERS[0])){
 						count++;

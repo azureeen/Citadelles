@@ -26,7 +26,7 @@ public class Patricien extends Personnage {
         }else{
             int a = 0;
             if(this.getJoueur() != null){
-                for(int i = 0; i < this.getJoueur().nbQuartiersReelDansCite(); i++){
+                for(int i = 0; i < this.getJoueur().nbQuartiersDansCite(); i++){
                     if(this.getJoueur().getCite()[0] != null){
                         if(this.getJoueur().getCite()[i].getType() == "NOBLE"){
                             this.getJoueur().ajouterQuartierDansMain(this.getPlateau().getPioche().piocher());

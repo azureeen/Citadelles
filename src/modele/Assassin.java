@@ -15,9 +15,7 @@ public class Assassin extends Personnage {
 
     @Override
     public void utiliserPouvoir() {
-        // TODO Auto-generated method stub
         boolean continu = true;
-        Interaction sc = new Interaction();
         System.out.println("Quel personnage voulez-vous assassiner ?");
         for(int i = 0; i<this.getPlateau().getNombrePersonnages(); i++){
             System.out.println((i+1) + "." + this.getPlateau().getPersonnage(i).getNom());
@@ -25,7 +23,7 @@ public class Assassin extends Personnage {
         do{
             System.out.println("Votre choix : ");
             try{
-                int j = sc.lireUnEntier(1, this.getPlateau().getNombrePersonnages());
+                int j = Interaction.lireUnEntier(1, this.getPlateau().getNombrePersonnages());
                 int k = j-1;
                 if(this.getPlateau().getPersonnage(k).equals(this)){
                     throw new SelfChosen();
@@ -41,7 +39,6 @@ public class Assassin extends Personnage {
 
     @Override
     public void utiliserPouvoirAvatar() {
-        // TODO Auto-generated method stub
         boolean continu = true;
         System.out.println("Quel personnage voulez-vous assassiner ?");
         for(int i = 0; i<this.getPlateau().getNombrePersonnages(); i++){
@@ -60,11 +57,8 @@ public class Assassin extends Personnage {
                 this.getPlateau().getPersonnage(k).setAssassine();
                 System.out.println(this.getPlateau().getPersonnage(k).getNom() + " a été assassine.");
                 continu = false;
-            }catch(SelfChosen e){
-            }
-            
+            } catch(SelfChosen e){}
             catch(WrongInput e){
-
             }
         }while(continu);
     }

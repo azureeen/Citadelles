@@ -7,6 +7,9 @@ public class Quartier {
     private String type = "";
     private Integer coutConstruction = 0;
     private String caracteristiques = "";
+
+    private boolean embelli;
+
     public static final String[] TYPE_QUARTIERS = {"RELIGIEUX", "MILITAIRE", "NOBLE", "COMMERCANT", "MERVEILLE"};
 
     /**
@@ -95,5 +98,35 @@ public class Quartier {
      */
     public void setCaracteristiques(String caracteristiques) {
         this.caracteristiques = caracteristiques != null ? caracteristiques : "";
+    }
+
+    /**
+     * TODO : comment get
+     * @return
+     */
+    public boolean getEmbelli() {
+        return embelli;
+    }
+
+    /**
+     * TODO : comment set
+     * @param embelli
+     */
+    public void setEmbelli(boolean embelli) {
+        this.embelli = embelli;
+    }
+
+
+    /**
+     * TODO : comment method
+     */
+    public void embellir(){
+        if(!this.getEmbelli()){
+            this.coutConstruction+=1;
+            this.setEmbelli(true);
+            System.out.println("Le quartier à bien été embelli");
+        }else{
+            System.out.println("Quartier déjà embelli");
+        }
     }
 }

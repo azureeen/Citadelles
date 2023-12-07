@@ -16,22 +16,22 @@ public class Reine extends Personnage{
 			}
 		}
 		if(monId == 0) {
-			if(listeJ[this.getPlateau().getNombreJoueurs()-1].getPersonnage().getRang() == 4 && listeJ[this.getPlateau().getNombreJoueurs()-1].getPersonnage().getAssassine() == false 
-					|| listeJ[monId+1].getPersonnage().getRang() == 4&& listeJ[monId+1].getPersonnage().getAssassine() == false) {
+			if(listeJ[this.getPlateau().getNombreJoueurs()-1].getPersonnage().getRang() == 4 && !listeJ[this.getPlateau().getNombreJoueurs() - 1].getPersonnage().getAssassine()
+					|| listeJ[monId+1].getPersonnage().getRang() == 4&& !listeJ[monId + 1].getPersonnage().getAssassine()) {
 					this.getJoueur().ajouterPieces(3);
-					System.out.println("3 pièces ont été ajoutées à votre trésor car vous êtes assis à coté du personnage de rang 4");
+					System.out.println("3 piï¿½ces ont ï¿½tï¿½ ajoutï¿½es ï¿½ votre trï¿½sor car vous ï¿½tes assis ï¿½ cotï¿½ du personnage de rang 4");
 			}
 		}else if(monId == this.getPlateau().getNombreJoueurs()-1){
-			if(listeJ[monId-1].getPersonnage().getRang() == 4 && listeJ[monId-1].getPersonnage().getAssassine() == false 
-					|| listeJ[0].getPersonnage().getRang() == 4 && listeJ[0].getPersonnage().getAssassine() == false) {
+			if(listeJ[monId-1].getPersonnage().getRang() == 4 && !listeJ[monId - 1].getPersonnage().getAssassine()
+					|| listeJ[0].getPersonnage().getRang() == 4 && !listeJ[0].getPersonnage().getAssassine()) {
 					this.getJoueur().ajouterPieces(3);
-					System.out.println("3 pièces ont été ajoutées à votre trésor car vous êtes assis à coté du personnage de rang 4");
+					System.out.println("3 piï¿½ces ont ï¿½tï¿½ ajoutï¿½es ï¿½ votre trï¿½sor car vous ï¿½tes assis ï¿½ cotï¿½ du personnage de rang 4");
 			}
 		}else {
-			if(listeJ[monId-1].getPersonnage().getRang() == 4 && listeJ[monId-1].getPersonnage().getAssassine() == false ||
-					listeJ[monId+1].getPersonnage().getRang() == 4 && listeJ[monId+1].getPersonnage().getAssassine() == false) {
+			if(listeJ[monId-1].getPersonnage().getRang() == 4 && !listeJ[monId - 1].getPersonnage().getAssassine() ||
+					listeJ[monId+1].getPersonnage().getRang() == 4 && !listeJ[monId + 1].getPersonnage().getAssassine()) {
 					this.getJoueur().ajouterPieces(3);
-					System.out.println("3 pièces ont été ajoutées à votre trésor car vous êtes assis à coté du personnage de rang 4");
+					System.out.println("3 piï¿½ces ont ï¿½tï¿½ ajoutï¿½es ï¿½ votre trï¿½sor car vous ï¿½tes assis ï¿½ cotï¿½ du personnage de rang 4");
 			}
 		}
 		
@@ -49,23 +49,23 @@ public class Reine extends Personnage{
 			}
 		}
 		if(monId == 0) {
-			if(listeJ[this.getPlateau().getNombreJoueurs()-1].getPersonnage().getRang() == 4 && listeJ[this.getPlateau().getNombreJoueurs()-1].getPersonnage().getAssassine() == false 
-					|| listeJ[monId+1].getPersonnage().getRang() == 4&& listeJ[monId+1].getPersonnage().getAssassine() == false) {
+			if(listeJ[this.getPlateau().getNombreJoueurs()-1].getPersonnage().getRang() == 4 && !listeJ[this.getPlateau().getNombreJoueurs() - 1].getPersonnage().getAssassine()
+					|| listeJ[monId+1].getPersonnage().getRang() == 4&& !listeJ[monId + 1].getPersonnage().getAssassine()) {
 					this.getJoueur().ajouterPieces(3);
-					System.out.println("3 pièces ont été ajoutées à votre trésor car vous êtes assis à coté du personnage de rang 4");
+					System.out.println("3 piï¿½ces ont ï¿½tï¿½ ajoutï¿½es ï¿½ votre trï¿½sor car vous ï¿½tes assis ï¿½ cotï¿½ du personnage de rang 4");
 				
 			}
 		}else if(monId == this.getPlateau().getNombreJoueurs()-1){
-			if(listeJ[monId-1].getPersonnage().getRang() == 4 && listeJ[monId-1].getPersonnage().getAssassine() == false 
-					|| listeJ[0].getPersonnage().getRang() == 4 && listeJ[0].getPersonnage().getAssassine() == false) {
+			if(listeJ[monId-1].getPersonnage().getRang() == 4 && !listeJ[monId - 1].getPersonnage().getAssassine()
+					|| listeJ[0].getPersonnage().getRang() == 4 && !listeJ[0].getPersonnage().getAssassine()) {
 					this.getJoueur().ajouterPieces(3);
-					System.out.println("3 pièces ont été ajoutées à votre trésor car vous êtes assis à coté du personnage de rang 4");
+					System.out.println("3 piï¿½ces ont ï¿½tï¿½ ajoutï¿½es ï¿½ votre trï¿½sor car vous ï¿½tes assis ï¿½ cotï¿½ du personnage de rang 4");
 			}
 		}else {
-			if(listeJ[monId-1].getPersonnage().getRang() == 4 && listeJ[monId-1].getPersonnage().getAssassine() == false ||
-					listeJ[monId+1].getPersonnage().getRang() == 4 && listeJ[monId+1].getPersonnage().getAssassine() == false) {
+			if(listeJ[monId-1].getPersonnage().getRang() == 4 && !listeJ[monId - 1].getPersonnage().getAssassine() ||
+					listeJ[monId+1].getPersonnage().getRang() == 4 && !listeJ[monId + 1].getPersonnage().getAssassine()) {
 					this.getJoueur().ajouterPieces(3);
-					System.out.println("3 pièces ont été ajoutées à votre trésor car vous êtes assis à coté du personnage de rang 4");
+					System.out.println("3 piï¿½ces ont ï¿½tï¿½ ajoutï¿½es ï¿½ votre trï¿½sor car vous ï¿½tes assis ï¿½ cotï¿½ du personnage de rang 4");
 			}
 		}
 	}

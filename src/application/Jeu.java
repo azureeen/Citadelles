@@ -259,7 +259,7 @@ public class Jeu {
 
     private boolean partieFinie(){
         for(int i = 0; i < this.plateauDeJeu.getNombreJoueurs(); i++){
-            if(this.plateauDeJeu.getJoueur(i).nbQuartiersReelDansCite() == 8 || this.plateauDeJeu.getJoueur(i).nbQuartiersMonumentDansCite() == 8){
+            if(this.plateauDeJeu.getJoueur(i).nbQuartiersDansCite() == 8 || this.plateauDeJeu.getJoueur(i).nbQuartiersMonumentDansCite() == 8){
                 this.calculDesPoints();
                 listeJoueur.clear();
                 listePersonnage.clear();
@@ -368,8 +368,8 @@ public class Jeu {
 
                         //implémentation de la merveille Musee
                         
-                        if(this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite()>0){
-                            for(int k = 0; k < this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite(); k++){
+                        if(this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite()>0){
+                            for(int k = 0; k < this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite(); k++){
                                 if(this.listePersonnageUtilises.get(j).getJoueur().getCite()[k]!=null){
                                     //-----------------------------------------------------------------------//
                                     //réinitialise les valeurs
@@ -377,7 +377,7 @@ public class Jeu {
                                     this.listePersonnageUtilises.get(j).getJoueur().setPossedeManu(false);
                                     this.listePersonnageUtilises.get(j).getJoueur().setPossedeEcoleMag(false);
                                     //Recherche si le joueur a la carriere, manufacture
-                                    for(int b=0;b<this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite();b++){
+                                    for(int b=0;b<this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite();b++){
                                         if(this.listePersonnageUtilises.get(j).getJoueur().getCite()[b]!=null){
                                             switch (this.listePersonnageUtilises.get(j).getJoueur().getCite()[b].getNom()) {
                                                 case "Carriere":
@@ -415,7 +415,7 @@ public class Jeu {
                                             int choix2 = 0;
         
                                             for(int l = 0; l < this.listePersonnageUtilises.get(j).getJoueur().getMain().size(); l++){
-                                                System.out.println((l+1) + ". " + this.listePersonnageUtilises.get(j).getJoueur().getMain().get(l).getNom() + " ( " + this.listePersonnageUtilises.get(j).getJoueur().getMain().get(l).getCout() + " piece(s) )");
+                                                System.out.println((l+1) + ". " + this.listePersonnageUtilises.get(j).getJoueur().getMain().get(l).getNom() + " ( " + this.listePersonnageUtilises.get(j).getJoueur().getMain().get(l).getCoutConstruction() + " piece(s) )");
                                             }
         
                                             System.out.println("Quel quartier choisissez-vous ?");
@@ -440,7 +440,7 @@ public class Jeu {
         
                                     //-----------------------------------------------------------------------//
         
-                                    if(this.listePersonnageUtilises.get(j).getJoueur().getCite()[k].equals(Configuration.poudriere) && this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite() > 1){
+                                    if(this.listePersonnageUtilises.get(j).getJoueur().getCite()[k].equals(Configuration.poudriere) && this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite() > 1){
                                         Boolean detruirePoudriere;
                                         System.out.println("Vous avez la merveille Poudriere dans votre cite.\nVous pouvez choisir de dÃ©truire cette merveille afin de detruire un autre quartier dans votre cite.\nVoulez-vous detruire la merveille Poudriere afin de detruire un autre quartier dans votre cite ? (o/n)\n");
                                         if(this.listePersonnageUtilises.get(j).getJoueur().getNom().equals("Joueur")){
@@ -453,8 +453,8 @@ public class Jeu {
         
                                         System.out.println("Poudriere correctement detruite");
         
-                                        if(detruirePoudriere && this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite() > 0){
-                                            for(int z = 0; z < this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite(); z++){
+                                        if(detruirePoudriere && this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite() > 0){
+                                            for(int z = 0; z < this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite(); z++){
                                                 System.out.println((z+1) + ". " + this.listePersonnageUtilises.get(j).getJoueur().getCite()[z].getNom() + " (" + this.listePersonnageUtilises.get(j).getJoueur().getCite()[z].getType() + ") ");
                                             }
         
@@ -463,10 +463,10 @@ public class Jeu {
                                             int quartierADetruire = 0;
         
                                             if(this.listePersonnageUtilises.get(j).getJoueur().getNom().equals("Joueur")){
-                                                quartierADetruire = Interaction.lireUnEntier(1, this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite());
+                                                quartierADetruire = Interaction.lireUnEntier(1, this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite());
                                                 quartierADetruire -= 1;
                                             }else{
-                                                quartierADetruire = generateur.nextInt(this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite());
+                                                quartierADetruire = generateur.nextInt(this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite());
                                             }
         
                                             this.listePersonnageUtilises.get(j).getJoueur().retirerQuartierDansCite(this.listePersonnageUtilises.get(j).getJoueur().getCite()[quartierADetruire].getNom());
@@ -516,7 +516,7 @@ public class Jeu {
                                     if(this.listePersonnageUtilises.get(j).getJoueur().getCite()[k]!=null){
                                         if(this.listePersonnageUtilises.get(j).getJoueur().getCite()[k].equals(Configuration.laboratoire)){
                                             System.out.println("\nVous possedez la merveille laboratoire, vous pouvez donc défausser une carte de votre main pour recevoir 2 pieces d'or");
-                                            if(this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansMain()==0){
+                                            if(this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansMain()==0){
                                                 System.out.println("Vous n'avez pas de carte à défausser");
                                             }else{
                                                 System.out.println("Voulez-vous defausser une carte de votre main et recevoir 2 pieces d'or ? (o/n)\n");
@@ -570,7 +570,7 @@ public class Jeu {
                                                 Quartier quartConstr;
                                                 if(listePersonnageUtilises.get(j).getJoueur().getMain().size()!=0){
                                                     if(listePersonnageUtilises.get(j).getJoueur().getNom().equals("Joueur")){
-                                                        indxQuart = Interaction.lireUnEntier(0, listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansMain())-1;
+                                                        indxQuart = Interaction.lireUnEntier(0, listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansMain())-1;
                                                     }else{
                                                         choix2  = generateur.nextBoolean();
                             
@@ -586,12 +586,12 @@ public class Jeu {
                                                             choix3  = generateur.nextInt(this.listePersonnageUtilises.get(j).getJoueur().getMain().size());
                                                         }
                                                         quartConstr = listePersonnageUtilises.get(j).getJoueur().getMain().get(choix3);
-                                                        while(quartConstr.getNom().equals("Monument")&&listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite()>5 && indxQuart!=-1){
+                                                        while(quartConstr.getNom().equals("Monument")&&listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite()>5 && indxQuart!=-1){
                                                             System.out.println("Vous avez + de 5 quartier dans votre cité, vous ne pouvez pas contruire le Monument.\nChoisissez un autre quartier(entrer 0 pour ne rien faire):");
                                                             if(listePersonnageUtilises.get(j).getJoueur().getNom().equals("Joueur")){
-                                                                indxQuart = Interaction.lireUnEntier(0, listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansMain())-1;
+                                                                indxQuart = Interaction.lireUnEntier(0, listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansMain())-1;
                                                             }else{
-                                                                indxQuart = generateur.nextInt(listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansMain()+1)-1 ; //indx entre 0 et nbQuartarsdansmain -1
+                                                                indxQuart = generateur.nextInt(listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansMain()+1)-1 ; //indx entre 0 et nbQuartarsdansmain -1
                                                             }
                                                             if(indxQuart!=-1){
                                                             quartConstr = listePersonnageUtilises.get(j).getJoueur().getMain().get(indxQuart);
@@ -671,15 +671,15 @@ public class Jeu {
                                 if(human){
                                     if(persoQuiJoue.getJoueur().getMain().size()!=0){
                                         System.out.println("Voici votre main: ");
-                                        for(int l=0; l<persoQuiJoue.getJoueur().nbQuartiersReelDansMain(); l++){
+                                        for(int l=0; l<persoQuiJoue.getJoueur().nbQuartiersDansMain(); l++){
                                             Quartier quartier = persoQuiJoue.getJoueur().getMain().get(l);
                                             System.out.println((l+1));
                                             System.out.println("Nom du quartier: "+quartier.getNom());
                                             System.out.println("Type du quartier: "+quartier.getType());
                                             if(persoQuiJoue.getJoueur().getPossedeManu()&& quartier.getType().equals("MERVEILLE")){
-                                                System.out.println("Coût de construction: "+(quartier.getCout()-1));//le cout est réduit de 1 pour les merveilles si le joueur possede Manufacture
+                                                System.out.println("Coût de construction: "+(quartier.getCoutConstruction()-1));//le cout est réduit de 1 pour les merveilles si le joueur possede Manufacture
                                             }else{
-                                                System.out.println("Coût de construction: "+quartier.getCout());
+                                                System.out.println("Coût de construction: "+quartier.getCoutConstruction());
                                             }
                                             
                                             if(quartier.getType().equals("MERVEILLE")){
@@ -699,9 +699,9 @@ public class Jeu {
                                 Quartier quartConstr;
                                 if(persoQuiJoue.getJoueur().getMain().size()!=0){
                                     if(human){
-                                        indxQuart = Interaction.lireUnEntier(0, persoQuiJoue.getJoueur().nbQuartiersReelDansMain())-1;
+                                        indxQuart = Interaction.lireUnEntier(0, persoQuiJoue.getJoueur().nbQuartiersDansMain())-1;
                                     }else{
-                                        indxQuart = generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersReelDansMain()+1)-1 ; //indx entre 0 et nbQuartarsdansmain -1
+                                        indxQuart = generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersDansMain()+1)-1 ; //indx entre 0 et nbQuartarsdansmain -1
                                     }
 
                                     
@@ -711,12 +711,12 @@ public class Jeu {
                                         Boolean construitNecro = false;
                                         quartConstr = persoQuiJoue.getJoueur().getMain().get(indxQuart);
                                         boolean quartierPresent=false;
-                                        int coutQuart = quartConstr.getCout();
+                                        int coutQuart = quartConstr.getCoutConstruction();
                                         if(persoQuiJoue.getJoueur().getPossedeManu()&&quartConstr.getType().equals("MERVEILLE")){
                                             coutQuart-=1;
                                         }
                                         if(!persoQuiJoue.getJoueur().getPossedeCarriere()){ //Verifie si le quartier est déjà présent sauf si le joueur a la merveille Carriere
-                                            for(int q=0;q<persoQuiJoue.getJoueur().nbQuartiersReelDansCite();q++){
+                                            for(int q=0;q<persoQuiJoue.getJoueur().nbQuartiersDansCite();q++){
                                                 if(persoQuiJoue.getJoueur().getCite()[q]!=null){
                                                     if(quartConstr.getNom().equals(persoQuiJoue.getJoueur().getCite()[q].getNom())){
                                                         quartierPresent = true;
@@ -739,16 +739,16 @@ public class Jeu {
                                             if(construireNecropole){
                                                 int quartierADetruire = 0;
                                                 
-                                                for(int k = 0; k < this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite(); k++){
+                                                for(int k = 0; k < this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite(); k++){
                                                     System.out.println((k+1) + ". " + this.listePersonnageUtilises.get(j).getJoueur().getCite()[k].getNom());
                                                 }
     
                                                 System.out.println("\nQuel quartier choisissez vous ?");
-                                                if(this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite()>0){
+                                                if(this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite()>0){
                                                     if(this.listePersonnageUtilises.get(j).getJoueur().getNom().equals("Joueur")){
-                                                        quartierADetruire = Interaction.lireUnEntier(1, this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite()) -1;
+                                                        quartierADetruire = Interaction.lireUnEntier(1, this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite()) -1;
                                                     }else{
-                                                        quartierADetruire = generateur.nextInt(this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite());
+                                                        quartierADetruire = generateur.nextInt(this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite());
                                                     }
         
                                                     
@@ -757,7 +757,7 @@ public class Jeu {
                                                         for(int l=0; l<listePersonnageUtilises.size(); l++){
                                                             if(listePersonnageUtilises.get(l).getNom().equals("Echevin")){
                                                                 boolean quartierPresentEchevin = false;
-                                                                for(int q=0; q<listePersonnageUtilises.get(l).getJoueur().nbQuartiersReelDansCite(); q++){
+                                                                for(int q=0; q<listePersonnageUtilises.get(l).getJoueur().nbQuartiersDansCite(); q++){
                                                                     if(listePersonnageUtilises.get(l).getJoueur().getCite()[q].equals(quartConstr)){
                                                                         quartierPresentEchevin = true;
                                                                     }
@@ -801,25 +801,25 @@ public class Jeu {
                                         if(quartConstr.getNom().equals("Tripot")){
 
                                             int carteTripot = 0;
-                                            if(persoQuiJoue.getJoueur().nbPieces()+(persoQuiJoue.getJoueur().nbQuartiersReelDansMain()-1)>=coutQuart &&persoQuiJoue.getJoueur().nbQuartiersReelDansMain()>1){
-                                                System.out.println("Vous pouvez payer la construction du Tripot en partie ou entierement avec des cartes. Choisissez le nombre de cartes que vous voulez utiliser pour payer (le reste sera des pièces). [0;"+persoQuiJoue.getJoueur().nbQuartiersReelDansMain()+"] (entre 0 et le nombre de quartiers dans votre main)");
+                                            if(persoQuiJoue.getJoueur().nbPieces()+(persoQuiJoue.getJoueur().nbQuartiersDansMain()-1)>=coutQuart &&persoQuiJoue.getJoueur().nbQuartiersDansMain()>1){
+                                                System.out.println("Vous pouvez payer la construction du Tripot en partie ou entierement avec des cartes. Choisissez le nombre de cartes que vous voulez utiliser pour payer (le reste sera des pièces). [0;"+persoQuiJoue.getJoueur().nbQuartiersDansMain()+"] (entre 0 et le nombre de quartiers dans votre main)");
                                                 if(human){
                                                     
-                                                    carteTripot = Interaction.lireUnEntier(0, persoQuiJoue.getJoueur().nbQuartiersReelDansMain()-1);
+                                                    carteTripot = Interaction.lireUnEntier(0, persoQuiJoue.getJoueur().nbQuartiersDansMain()-1);
                                                     
-                                                    if(carteTripot<persoQuiJoue.getJoueur().nbQuartiersReelDansMain()-1){
+                                                    if(carteTripot<persoQuiJoue.getJoueur().nbQuartiersDansMain()-1){
 
                                                     }
                                                     coutQuart-=carteTripot;
                                                     if(carteTripot!=0){
                                                         for(int l=0;l<carteTripot; l++){
                                                             System.out.println("Voici votre main:");
-                                                            for(int q=0; q<persoQuiJoue.getJoueur().nbQuartiersReelDansMain(); q++){//suppression des cartes de la main
+                                                            for(int q=0; q<persoQuiJoue.getJoueur().nbQuartiersDansMain(); q++){//suppression des cartes de la main
                                                                 Quartier quartier = persoQuiJoue.getJoueur().getMain().get(q);
                                                                 System.out.println((q+1));
                                                                 System.out.println("Nom du quartier: "+quartier.getNom());
                                                                 System.out.println("Type du quartier: "+quartier.getType());
-                                                                System.out.println("Coût de construction: "+quartier.getCout());
+                                                                System.out.println("Coût de construction: "+quartier.getCoutConstruction());
                                                                 if(quartier.getType().equals("MERVEILLE")){
                                                                     System.out.println("Caracteristique: "+quartier.getCaracteristiques());
                                                                 } 
@@ -827,7 +827,7 @@ public class Jeu {
                                                             System.out.println("Entrer les quartiers a utiliser pour payer: ");
                                                             boolean choisiTripot=false;
                                                             do {
-                                                                int indxQuartTripot = Interaction.lireUnEntier(1, persoQuiJoue.getJoueur().nbQuartiersReelDansMain())-1;
+                                                                int indxQuartTripot = Interaction.lireUnEntier(1, persoQuiJoue.getJoueur().nbQuartiersDansMain())-1;
                                                                 Quartier qTripot = persoQuiJoue.getJoueur().getMain().get(indxQuartTripot);
                                                                 if(qTripot.equals(Configuration.tripot)){
                                                                     System.out.println("Vous ne pouvez pas payer le tripot avec le tripot.");
@@ -844,7 +844,7 @@ public class Jeu {
                                                         }
                                                     }
                                                 }else{
-                                                    carteTripot = generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersReelDansMain());
+                                                    carteTripot = generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersDansMain());
                                                     coutQuart-=carteTripot;
                                                     if(carteTripot!=0){
                                                         for(int l=0;l<carteTripot; l++){
@@ -852,7 +852,7 @@ public class Jeu {
                                                             System.out.println("Entrer les quartiers a utiliser pour payer: ");
                                                             boolean choisiTripot=false;
                                                             do {
-                                                                int indxQuartTripot = generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersReelDansMain());
+                                                                int indxQuartTripot = generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersDansMain());
                                                                 Quartier qTripot = persoQuiJoue.getJoueur().getMain().get(indxQuartTripot);
                                                                 if(qTripot.equals(Configuration.tripot)){
                                                                     System.out.println("Vous ne pouvez pas payer le tripot avec le tripot.");
@@ -876,12 +876,12 @@ public class Jeu {
                                         }
 
                                     
-                                        while(quartConstr.getNom().equals("Monument")&&persoQuiJoue.getJoueur().nbQuartiersReelDansCite()>5&&indxQuart!=-1){
+                                        while(quartConstr.getNom().equals("Monument")&&persoQuiJoue.getJoueur().nbQuartiersDansCite()>5&&indxQuart!=-1){
                                             System.out.println("Vous avez + de 5 quartier dans votre cité, vous ne pouvez pas contruire le Monument.\nChoisissez un autre quartier (0 pour ne rien faire):");
                                             if(human){
-                                                indxQuart = Interaction.lireUnEntier(0, persoQuiJoue.getJoueur().nbQuartiersReelDansMain())-1;
+                                                indxQuart = Interaction.lireUnEntier(0, persoQuiJoue.getJoueur().nbQuartiersDansMain())-1;
                                             }else{
-                                                indxQuart = generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersReelDansMain()+1)-1 ; //indx entre 0 et nbQuartarsdansmain -1
+                                                indxQuart = generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersDansMain()+1)-1 ; //indx entre 0 et nbQuartarsdansmain -1
                                             }
                                             if(indxQuart!=-1){
                                             quartConstr = persoQuiJoue.getJoueur().getMain().get(indxQuart);
@@ -892,7 +892,7 @@ public class Jeu {
                                         if(persoQuiJoue.getNom().equals("Cardinal") && !construitNecro){
                                             System.out.println("Vous avez le personnage Cardinal.\n");
                                             if(coutQuart>persoQuiJoue.getJoueur().nbPieces()){
-                                                int ecart = persoQuiJoue.getJoueur().getMain().get(indxQuart).getCout() - persoQuiJoue.getJoueur().nbPieces();
+                                                int ecart = persoQuiJoue.getJoueur().getMain().get(indxQuart).getCoutConstruction() - persoQuiJoue.getJoueur().nbPieces();
                                                 boolean assezDePieces = false;
                                                 for(int e = 0; e < listeJoueur.size(); e++){
                                                     if(listeJoueur.get(e).nbPieces() >= ecart){
@@ -956,9 +956,9 @@ public class Jeu {
                                             }
 
                                             if(human){
-                                                indxQuart = Interaction.lireUnEntier(0, persoQuiJoue.getJoueur().nbQuartiersReelDansMain())-1;
+                                                indxQuart = Interaction.lireUnEntier(0, persoQuiJoue.getJoueur().nbQuartiersDansMain())-1;
                                             }else{
-                                                indxQuart = 0+generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersReelDansMain()+1-0) -1;
+                                                indxQuart = 0+generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersDansMain()+1-0) -1;
                                             }
                                             if(indxQuart==-1){
                                                 break;
@@ -969,7 +969,7 @@ public class Jeu {
                                             quartierPresent = false;
 
                                             if(!persoQuiJoue.getJoueur().getPossedeCarriere()){ //Verifie si le quartier est déjà présent sauf si le joueur a la merveille Carriere
-                                                for(int q=0;q<persoQuiJoue.getJoueur().nbQuartiersReelDansCite();q++){
+                                                for(int q=0;q<persoQuiJoue.getJoueur().nbQuartiersDansCite();q++){
                                                     if(this.listePersonnageUtilises.get(j).getJoueur().getCite()[q]!=null){
                                                         if(quartConstr.getNom().equals(persoQuiJoue.getJoueur().getCite()[q].getNom())){
                                                             quartierPresent = true;
@@ -978,7 +978,7 @@ public class Jeu {
                                                     
                                                 } 
                                             }
-                                            coutQuart = quartConstr.getCout();
+                                            coutQuart = quartConstr.getCoutConstruction();
                                             if(persoQuiJoue.getJoueur().getPossedeManu()&&quartConstr.getType().equals("MERVEILLE")){
                                                 coutQuart-=1;
                                             }
@@ -996,7 +996,7 @@ public class Jeu {
                                             if(this.listePersonnageUtilises.get(j).getVraiEchevin()){
                                                 for(int l=0; l<listePersonnageUtilises.size(); l++){
                                                     if(listePersonnageUtilises.get(l).getNom().equals("Echevin")){
-                                                        for(int q=0; q<listePersonnageUtilises.get(l).getJoueur().nbQuartiersReelDansCite(); q++){
+                                                        for(int q=0; q<listePersonnageUtilises.get(l).getJoueur().nbQuartiersDansCite(); q++){
                                                             if(listePersonnageUtilises.get(l).getJoueur().getCite()[q].equals(quartConstr)){
                                                                 quartierPresentEchevin = true;
                                                             }
@@ -1051,7 +1051,7 @@ public class Jeu {
 
                                         if(persoQuiJoue.getNom().equals("Architecte")||persoQuiJoue.getNom().equals("Archiviste")||persoQuiJoue.getNom().equals("Voyante")||construitEcurie){ // Si architecte, peut construire 3 quartier en 1 tour, archiviste 2
 
-                                            for(int b=0;b<this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite();b++){
+                                            for(int b=0;b<this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite();b++){
                                                 if(this.listePersonnageUtilises.get(j).getJoueur().getCite()[b]!=null){
                                                     switch (this.listePersonnageUtilises.get(j).getJoueur().getCite()[b].getNom()) {
                                                         case "Carrière":
@@ -1083,12 +1083,12 @@ public class Jeu {
                                                 if(reponseArchH || reponseArchA==0){
                                                     if(human){
                                                         System.out.println("Voici votre main: ");
-                                                        for(int l=0; l<persoQuiJoue.getJoueur().nbQuartiersReelDansMain(); l++){
+                                                        for(int l=0; l<persoQuiJoue.getJoueur().nbQuartiersDansMain(); l++){
                                                             Quartier quartier = persoQuiJoue.getJoueur().getMain().get(l);
                                                             System.out.println((l+1));
                                                             System.out.println("Nom du quartier: "+quartier.getNom());
                                                             System.out.println("Type du quartier: "+quartier.getType());
-                                                            System.out.println("Coût de construction: "+quartier.getCout());
+                                                            System.out.println("Coût de construction: "+quartier.getCoutConstruction());
                                                             if(quartier.getType().equals("MERVEILLE")){
                                                                 System.out.println("Caracteristique: "+quartier.getCaracteristiques());
                                                             }
@@ -1096,25 +1096,25 @@ public class Jeu {
                                                     }else{
                                                         System.out.println("L'architecte / archiviste / voyante souhaite construire un nouveau quartier");
                                                     }
-                                                    if(persoQuiJoue.getJoueur().nbQuartiersReelDansMain()==0){
+                                                    if(persoQuiJoue.getJoueur().nbQuartiersDansMain()==0){
                                                         System.out.println("Vous n'avez pas de quartier à construire");
                                                     }else{
                                                         System.out.println("Quel quartier voulez-vous construire ?");
                                                         int indxQuartArch;
                                                         Quartier quartConstrArch;
                                                         if(human){
-                                                            indxQuartArch = Interaction.lireUnEntier(1, persoQuiJoue.getJoueur().nbQuartiersReelDansMain())-1;
+                                                            indxQuartArch = Interaction.lireUnEntier(1, persoQuiJoue.getJoueur().nbQuartiersDansMain())-1;
                                                         }else{
-                                                            indxQuartArch = generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersReelDansMain());
+                                                            indxQuartArch = generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersDansMain());
                                                         }
                                                         quartConstrArch = persoQuiJoue.getJoueur().getMain().get(indxQuartArch); 
-                                                        int coutQuartArch = quartConstrArch.getCout();
+                                                        int coutQuartArch = quartConstrArch.getCoutConstruction();
                                                         quartierPresent = false;
                                                         if(persoQuiJoue.getJoueur().getPossedeManu()&&quartConstrArch.getType().equals("MERVEILLE")){
                                                             coutQuart-=1;
                                                         }
                                                         if(!persoQuiJoue.getJoueur().getPossedeCarriere()){ //Verifie si le quartier est déjà présent sauf si le joueur a la merveille Carriere
-                                                            for(int q=0;q<persoQuiJoue.getJoueur().nbQuartiersReelDansCite();q++){
+                                                            for(int q=0;q<persoQuiJoue.getJoueur().nbQuartiersDansCite();q++){
                                                                 if(persoQuiJoue.getJoueur().getCite()[q]!=null){
                                                                     if(quartConstrArch.getNom().equals(persoQuiJoue.getJoueur().getCite()[q].getNom())){
                                                                         quartierPresent = true;
@@ -1133,9 +1133,9 @@ public class Jeu {
                                                                 System.out.println("Ce quartier est déjà présent dans la cité, vous ne pouvez pas construire plusieurs fois le même, choisissez un autre quartier (0 pour ne rien faire)");
                                                             }
                                                             if(human){
-                                                                indxQuartArch = Interaction.lireUnEntier(0, persoQuiJoue.getJoueur().nbQuartiersReelDansMain())-1;
+                                                                indxQuartArch = Interaction.lireUnEntier(0, persoQuiJoue.getJoueur().nbQuartiersDansMain())-1;
                                                             }else{
-                                                                indxQuartArch = 0+generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersReelDansMain()+1-0) -1;
+                                                                indxQuartArch = 0+generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersDansMain()+1-0) -1;
                                                             }
                                                             if(indxQuartArch==-1){
                                                                 break;
@@ -1147,7 +1147,7 @@ public class Jeu {
                                                             System.out.println("Vous avez choisi "+quartConstrArch.getNom());
                                                             persoQuiJoue.getJoueur().ajouterQuartierDansCite(quartConstrArch); //ajouter du quartier dans la cité
                                                             persoQuiJoue.getJoueur().getMain().remove(indxQuartArch); //quartier retiré de la main
-                                                            persoQuiJoue.getJoueur().retirerPieces(quartConstrArch.getCout()); //paiement de la construction du quartier
+                                                            persoQuiJoue.getJoueur().retirerPieces(quartConstrArch.getCoutConstruction()); //paiement de la construction du quartier
                                                             
                                                             if(((persoQuiJoue.getJoueur().nbPieces() > 0) && (!(persoQuiJoue.getNom().equals("Bailli")) && nbJoueurs>3)) || ((persoQuiJoue.getJoueur().nbPieces() > 0) && (nbJoueurs == 3 || nbJoueurs == 2)) && bailliPresent){
                                                                 persoQuiJoue.getJoueur().retirerPieces(1);
@@ -1169,7 +1169,7 @@ public class Jeu {
                                             }
                                         }else if(persoQuiJoue.getNom().equals("Negociant")) {
                                         	System.out.println("Le negociant peut construire 1 quartier non-commercant et autant de quartiers commercants qu'il veut");
-                                        	for(int b=0;b<this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite();b++){
+                                        	for(int b=0;b<this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite();b++){
                                                 switch (this.listePersonnageUtilises.get(j).getJoueur().getCite()[b].getNom()) {
                                                     case "Carriere":
                                                         this.listePersonnageUtilises.get(j).getJoueur().setPossedeCarriere(true);
@@ -1198,12 +1198,12 @@ public class Jeu {
                                                 if(reponseH || reponseA){
                                                     if(human){
                                                         System.out.println("Voici votre main: ");
-                                                        for(int l=0; l<persoQuiJoue.getJoueur().nbQuartiersReelDansMain(); l++){
+                                                        for(int l=0; l<persoQuiJoue.getJoueur().nbQuartiersDansMain(); l++){
                                                             Quartier quartier = persoQuiJoue.getJoueur().getMain().get(l);
                                                             System.out.println((l+1));
                                                             System.out.println("Nom du quartier: "+quartier.getNom());
                                                             System.out.println("Type du quartier: "+quartier.getType());
-                                                            System.out.println("Coût de construction: "+quartier.getCout());
+                                                            System.out.println("Coût de construction: "+quartier.getCoutConstruction());
                                                             if(quartier.getType().equals("MERVEILLE")){
                                                                 System.out.println("Caracteristique: "+quartier.getCaracteristiques());
                                                             }
@@ -1211,26 +1211,26 @@ public class Jeu {
                                                     }else{
                                                         System.out.println("Le negociant souhaite construire un nouveau quartier");
                                                     }
-                                                    if(persoQuiJoue.getJoueur().nbQuartiersReelDansMain()>0){
+                                                    if(persoQuiJoue.getJoueur().nbQuartiersDansMain()>0){
                                                         System.out.println("Quel quartier voulez-vous construire ?");
                                                         int indxQuartNego;
                                                         Quartier quartConstrNego;
                                                         if(human){
-                                                            indxQuartNego = Interaction.lireUnEntier(1, persoQuiJoue.getJoueur().nbQuartiersReelDansMain())-1;
+                                                            indxQuartNego = Interaction.lireUnEntier(1, persoQuiJoue.getJoueur().nbQuartiersDansMain())-1;
                                                         }else{
-                                                            indxQuartNego = generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersReelDansMain());
+                                                            indxQuartNego = generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersDansMain());
                                                         }
                                                         if(!persoQuiJoue.getJoueur().getMain().get(indxQuartNego).getType().equals("COMMERCANT") && quartierNonCommercantDejaConstruit) {
                                                             System.out.println("Vous avez deja construit un quartier non-commercant dans ce tour");
                                                         }else {
                                                             quartConstrNego = persoQuiJoue.getJoueur().getMain().get(indxQuartNego); 
-                                                            int coutQuartArch = quartConstrNego.getCout();
+                                                            int coutQuartArch = quartConstrNego.getCoutConstruction();
                                                             quartierPresent = false;
                                                             if(persoQuiJoue.getJoueur().getPossedeManu() && quartConstrNego.getType().equals("MERVEILLE")){
                                                                 coutQuart-=1;
                                                             }
                                                             if(!persoQuiJoue.getJoueur().getPossedeCarriere()){ //Verifie si le quartier est déjà présent sauf si le joueur a la merveille Carriere
-                                                                for(int q=0;q<persoQuiJoue.getJoueur().nbQuartiersReelDansCite();q++){
+                                                                for(int q=0;q<persoQuiJoue.getJoueur().nbQuartiersDansCite();q++){
                                                                     if(quartConstrNego.getNom().equals(persoQuiJoue.getJoueur().getCite()[q].getNom())){
                                                                         quartierPresent = true;
                                                                         break;
@@ -1246,9 +1246,9 @@ public class Jeu {
                                                                     System.out.println("Ce quartier est déjà présent dans la cité, vous ne pouvez pas construire plusieurs fois le même, choisissez un autre quartier (0 pour ne rien faire)");
                                                                 }
                                                                 if(human){
-                                                                    indxQuartNego = Interaction.lireUnEntier(0, persoQuiJoue.getJoueur().nbQuartiersReelDansMain())-1;
+                                                                    indxQuartNego = Interaction.lireUnEntier(0, persoQuiJoue.getJoueur().nbQuartiersDansMain())-1;
                                                                 }else{
-                                                                    indxQuartNego = 0+generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersReelDansMain()+1-0) -1;
+                                                                    indxQuartNego = 0+generateur.nextInt(persoQuiJoue.getJoueur().nbQuartiersDansMain()+1-0) -1;
                                                                 }
                                                                 if(indxQuartNego==-1){
                                                                     break;
@@ -1260,7 +1260,7 @@ public class Jeu {
                                                                 System.out.println("Vous avez choisi "+quartConstrNego.getNom());
                                                                 persoQuiJoue.getJoueur().ajouterQuartierDansCite(quartConstrNego); //ajouter du quartier dans la cité
                                                                 persoQuiJoue.getJoueur().getMain().remove(indxQuartNego); //quartier retiré de la main
-                                                                persoQuiJoue.getJoueur().retirerPieces(quartConstrNego.getCout()); //paiement de la construction du quartier
+                                                                persoQuiJoue.getJoueur().retirerPieces(quartConstrNego.getCoutConstruction()); //paiement de la construction du quartier
 
                                                                 if(((persoQuiJoue.getJoueur().nbPieces() > 0) && (!(persoQuiJoue.getNom().equals("Bailli")) && nbJoueurs>3)) || ((persoQuiJoue.getJoueur().nbPieces() > 0) && (nbJoueurs == 3 || nbJoueurs == 2)) && bailliPresent){
                                                                     persoQuiJoue.getJoueur().retirerPieces(1);
@@ -1308,8 +1308,8 @@ public class Jeu {
 
                         //-----------------------------------------------------------------------//
 
-                        for(int k = 0; k < listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite(); k++){
-                            if(!(listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite()==0)){
+                        for(int k = 0; k < listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite(); k++){
+                            if(!(listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite()==0)){
                                 if(listePersonnageUtilises.get(j).getJoueur().getCite()[k]!=null){
                                     if(listePersonnageUtilises.get(j).getJoueur().nbPieces() == 0 && listePersonnageUtilises.get(j).getJoueur().getCite()[k].equals(Configuration.hospice)){
                                         System.out.println("Vous possedez la merveille hospice dans votre cite. Vous gagnez une piece.\n");
@@ -1334,8 +1334,8 @@ public class Jeu {
 
                         //implémentation de la merveille Parc
 
-                        for(int k = 0; k < listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite(); k++){
-                            if(!(listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite()==0)&&listePersonnageUtilises.get(j).getJoueur().getCite()[k]!=null){
+                        for(int k = 0; k < listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite(); k++){
+                            if(!(listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite()==0)&&listePersonnageUtilises.get(j).getJoueur().getCite()[k]!=null){
                                 if(listePersonnageUtilises.get(j).getJoueur().getMain().size() == 0 && listePersonnageUtilises.get(j).getJoueur().getCite()[k].equals(Configuration.parc)){
 
                                     System.out.println("Vous possedez la merveille parc dans votre cite. Comme vous n'avez aucune carte dans votre mains vous piochez 2 cartes.\n ");
@@ -1361,10 +1361,10 @@ public class Jeu {
                     
                 }
 
-                if((this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite() == 8 || this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersMonumentDansCite() == 8) && premierAFinir == null){
+                if((this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite() == 8 || this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersMonumentDansCite() == 8) && premierAFinir == null){
                     premierAFinir = this.listePersonnageUtilises.get(j).getJoueur();
                     System.out.println("\n" + premierAFinir.getNom() + " a 8 quartiers en premier.");
-                }else if((this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersReelDansCite() == 8 || this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersMonumentDansCite() == 8) && !(premierAFinir == null)){
+                }else if((this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersDansCite() == 8 || this.listePersonnageUtilises.get(j).getJoueur().nbQuartiersMonumentDansCite() == 8) && !(premierAFinir == null)){
                     this.listePersonnageUtilises.get(j).getJoueur().setAFini(true);
                 }
             }
@@ -1667,8 +1667,8 @@ public class Jeu {
         //implémentation theatre 
 
         for(int i = 0; i < this.listeJoueur.size(); i++){
-            if(this.listeJoueur.get(i).nbQuartiersReelDansCite()>0){
-                for(int j = 0; j < this.listeJoueur.get(i).nbQuartiersReelDansCite(); j++){
+            if(this.listeJoueur.get(i).nbQuartiersDansCite()>0){
+                for(int j = 0; j < this.listeJoueur.get(i).nbQuartiersDansCite(); j++){
                     if(this.listeJoueur.get(i).getCite()[j]!=null){
                         if(this.listeJoueur.get(i).getCite()[j].equals(Configuration.theatre)){
                             System.out.println("Vous avez la merveille Theatre.\nVous pouvez choisir d'echanger votre personnage avec un autre joueur.\nVoulez-vous echanger ?");
@@ -1740,7 +1740,7 @@ public class Jeu {
                     //implémentation de la merveille Mine d'Or 
 
                     boolean aMineDOr = false;
-                    for(int j=0; j <personnage.getJoueur().nbQuartiersReelDansCite(); j++){
+                    for(int j=0; j <personnage.getJoueur().nbQuartiersDansCite(); j++){
                         if(personnage.getJoueur().getCite()[j].equals(Configuration.mineDOr)){
                             aMineDOr = true;
                         }
@@ -1767,7 +1767,7 @@ public class Jeu {
                     //implémentation de la merveille Observatoire
                     Boolean aObservatoire = false;
                 
-                    for(int i = 0; i < personnage.getJoueur().nbQuartiersReelDansCite(); i++){
+                    for(int i = 0; i < personnage.getJoueur().nbQuartiersDansCite(); i++){
                         if(!(personnage.getJoueur().getCite()[i] == null)){
                             if(personnage.getJoueur().getCite()[i].equals(Configuration.bibliotheque)){
                                 possedeBibliotheque = true;
@@ -1798,7 +1798,7 @@ public class Jeu {
                     }
                     
                     for(int i = 0; i < piocheJoueur.size(); i++){
-                        System.out.println(i + 1 + ". " + piocheJoueur.get(i).getNom() + " (" + piocheJoueur.get(i).getCout() + " pieces)");
+                        System.out.println(i + 1 + ". " + piocheJoueur.get(i).getNom() + " (" + piocheJoueur.get(i).getCoutConstruction() + " pieces)");
                     }
 
                     if(possedeBibliotheque){
@@ -1876,7 +1876,7 @@ public class Jeu {
                     }
 
                     for(int i = 0; i < piocheJoueur.size(); i++){
-                        System.out.println(i + 1 + ". " + piocheJoueur.get(i).getNom() + " (" + piocheJoueur.get(i).getCout() + " pieces)");
+                        System.out.println(i + 1 + ". " + piocheJoueur.get(i).getNom() + " (" + piocheJoueur.get(i).getCoutConstruction() + " pieces)");
                     }
 
                     if(possedeBibliotheque){
@@ -1911,17 +1911,17 @@ public class Jeu {
             
             
 
-            for(int j = 0; j < joueur.nbQuartiersReelDansCite(); j++){
+            for(int j = 0; j < joueur.nbQuartiersDansCite(); j++){
 
                 if(!(joueur.getCite()[j] == null)){
-                    points += joueur.getCite()[j].getCout();
-                    System.out.println("Ajout points cout quartier +"+joueur.getCite()[j].getCout()+" pieces (points : "+points + ")");
+                    points += joueur.getCite()[j].getCoutConstruction();
+                    System.out.println("Ajout points cout quartier +"+joueur.getCite()[j].getCoutConstruction()+" pieces (points : "+points + ")");
                     typesQuartiers.add(joueur.getCite()[j].getType());
                 }
              
             }
 
-            for(int j = 0; j < joueur.nbQuartiersReelDansCite(); j++){
+            for(int j = 0; j < joueur.nbQuartiersDansCite(); j++){
                 List<String> typesQuartiersDistinct = typesQuartiers.stream().distinct().collect(Collectors.toList());
                 
                 if(joueur.getCite()[j]!=null){
@@ -1951,7 +1951,7 @@ public class Jeu {
                         joueur.getCite()[j].setType(Quartier.TYPE_QUARTIERS[choix]);
                         System.out.println("Vous avez change le type de votre merveille en : " + Quartier.TYPE_QUARTIERS[choix] );
     
-                        for(int p = 0; p < joueur.nbQuartiersReelDansCite(); p++){
+                        for(int p = 0; p < joueur.nbQuartiersDansCite(); p++){
     
                             if(!(joueur.getCite()[p] == null)){
                                 typesQuartiers.add(joueur.getCite()[p].getType());
@@ -2004,7 +2004,7 @@ public class Jeu {
             //implémentation de la merveille Musee
 
 
-            for(int j = 0; j< joueur.nbQuartiersReelDansCite(); j++){
+            for(int j = 0; j< joueur.nbQuartiersDansCite(); j++){
 
                 if(!(joueur.getCite()[j] == null) && joueur.getCite()[j].equals(Configuration.musee)){
                     points += quartiersSousMusee.size();
@@ -2024,7 +2024,7 @@ public class Jeu {
 
 
                 if(!(joueur.getCite()[j] == null) && joueur.getCite()[j].equals(Configuration.fontaineAuxSouhaits)){
-                    for(int k = 0; k < joueur.nbQuartiersReelDansCite(); k++){
+                    for(int k = 0; k < joueur.nbQuartiersDansCite(); k++){
                         if(!(joueur.getCite()[k] == null)){
                             if(joueur.getCite()[k].getType().equals("MERVEILLE")){
                                 points += 1;
@@ -2039,8 +2039,8 @@ public class Jeu {
 
 
                 if(!(joueur.getCite()[j] == null) && joueur.getCite()[j].equals(Configuration.salleDesCartes)){
-                    points += joueur.nbQuartiersReelDansMain();
-                    System.out.println("Salle des cartes +1pts par cartes dans la main"+" (donc +"+joueur.nbQuartiersReelDansMain()+ " (points: "+points+")");
+                    points += joueur.nbQuartiersDansMain();
+                    System.out.println("Salle des cartes +1pts par cartes dans la main"+" (donc +"+joueur.nbQuartiersDansMain()+ " (points: "+points+")");
 
                 }
 
@@ -2067,9 +2067,9 @@ public class Jeu {
 
                 if(!(joueur.getCite()[j] == null) && joueur.getCite()[j].equals(Configuration.basilique)){
                     int compteur = 0;
-                    for(int k = 0; k < joueur.nbQuartiersReelDansCite(); k++){
+                    for(int k = 0; k < joueur.nbQuartiersDansCite(); k++){
                         if(joueur.getCite()[k]!=null){
-                            if(joueur.getCite()[k].getCout()%2 == 1){
+                            if(joueur.getCite()[k].getCoutConstruction()%2 == 1){
                                 compteur++;
                                 System.out.println("Basilique, Impaire, +1 pt");
                             }
@@ -2086,7 +2086,7 @@ public class Jeu {
                 if(!(joueur.getCite()[j] == null) && joueur.getCite()[j].equals(Configuration.capitole)){
                     ArrayList<String> typesQuartier = new ArrayList<String>();
                     ArrayList<Integer> nbOccurrence = new ArrayList<Integer>();
-                    for(int k = 0; k < joueur.nbQuartiersReelDansCite(); k++){
+                    for(int k = 0; k < joueur.nbQuartiersDansCite(); k++){
                         typesQuartier.add(joueur.getCite()[k].getType());
                     }
                     

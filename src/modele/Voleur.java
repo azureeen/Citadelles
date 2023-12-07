@@ -50,7 +50,6 @@ public class Voleur extends Personnage {
 
     @Override
     public void utiliserPouvoirAvatar() {
-        // TODO Auto-generated method stub
         if(this.getAssassine()){
             System.out.println("Votre personnage a été assassiné");
         }else{

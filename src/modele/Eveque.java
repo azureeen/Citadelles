@@ -1,43 +1,55 @@
 package modele;
 
-public class Eveque extends Personnage {
-    public Eveque(){
-        super("Eveque", 5, Caracteristiques.EVEQUE); // protégé par des pouvoirs des personnages rang 8 ? 
+import java.util.Objects;
+
+public class Eveque extends Personnage{
+
+    /**
+     * Constructeur Eveque
+     */
+    public Eveque() {
+        super("Eveque", 5, Caracteristiques.EVEQUE);
     }
 
-    @Override
-    public void percevoirRessourcesSpecifiques() {
-        // TODO Auto-generated method stub
-        if(this.getAssassine()){
-            System.out.println("Votre personnage a été assassiné");
-        }else{
-            for(int i = 0; i < this.getJoueur().getCite().length; i++){
-                if(this.getJoueur().getCite()[i].getType().equals(Quartier.TYPE_QUARTIERS[0])){
-                    this.getJoueur().ajouterPieces(1);
-                }
-                
-            }
-            if(this.getJoueur().getPossedeEcoleMag()){//la merveille Ecole de Magie change de type a la perception des ressources
-                this.getJoueur().ajouterPieces(1);
-            }
-        }
-        
-    }
-
+    /**
+     * Utiliser le pouvoir de l'Évêque
+     * Reçoit une pièce d’or supplémentaire par quartier religieux dans sa cité
+     */
     @Override
     public void utiliserPouvoir() {
-        // TODO Auto-generated method stub
+        System.out.println("L'Évêque est protégé par les pouvoirs des personnages de rang 8");
     }
 
     @Override
     public void utiliserPouvoirAvatar() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void activationPouvoirSorciere(Joueur joueurSorciere) {
-        // TODO Auto-generated method stub
-        
+
     }
+
+
+    /**
+     * Percevoir ressources spécifiques de l'Évêque
+     */
+    @Override
+    public void percevoirRessourcesSpecifiques() {
+        if(!getAssassine() && getJoueur() != null){
+
+            int nbQuartiersReligieux = 0;
+            for(int i = 0 ; i < getJoueur().getCite().length; i++) {
+
+                if(getJoueur().getCite()[i] != null && Objects.equals(getJoueur().getCite()[i].getType(), "RELIGIEUX")){
+                    nbQuartiersReligieux++;
+                }
+            }
+            getJoueur().ajouterPieces(nbQuartiersReligieux);
+            System.out.println(nbQuartiersReligieux + " pièces supplémentaires ont été ajoutées au tresor de " + getJoueur().getNom());
+        }
+
+    }
+
+
 }

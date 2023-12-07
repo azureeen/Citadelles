@@ -24,7 +24,7 @@ public class Navigatrice extends Personnage {
             System.out.println("Voici les cartes piochées: \n");
             for(int i=0; i<4; i++){
                 Quartier piocheJoueur = this.getPlateau().getPioche().piocher();
-                System.out.println((i+1)+". Nom: "+piocheJoueur.getNom()+"\ntype: "+piocheJoueur.getType()+"\ncout: "+piocheJoueur.getCout()+"\n");
+                System.out.println((i+1)+". Nom: "+piocheJoueur.getNom()+"\ntype: "+piocheJoueur.getType()+"\ncout: "+piocheJoueur.getCoutConstruction()+"\n");
                 this.getJoueur().ajouterQuartierDansMain(piocheJoueur);
             }
         }

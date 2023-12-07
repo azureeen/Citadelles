@@ -4,8 +4,8 @@ public class PlateauDeJeu {
     private Integer nombrePersonnages;
     private Integer nombreJoueurs;
     private Pioche pioche;
-    private Personnage[] listePersonnages;
-    private Joueur[] listeJoueurs;
+    private final Personnage[] listePersonnages;
+    private final Joueur[] listeJoueurs;
 
     public PlateauDeJeu() {
         this.nombreJoueurs = 0;
@@ -39,18 +39,31 @@ public class PlateauDeJeu {
         return pioche;
     }
 
+    /**
+     * TODO
+     * @param p /
+     */
+    public void setPioche(Pioche p){
+        this.pioche = p;
+    }
+
     /***
      * Renvoie le i ème personnage du tableau listePersonnages
      * @param i : index dans le tableau
      * @return personnage
      */
     public Personnage getPersonnage(int i) {
-
         Personnage p;
-
         p=(i>=0 && i<=listePersonnages.length-1) ? listePersonnages[i] : null;
-
         return p;
+    }
+
+    /***
+     * Renvoie la liste des personnages
+     * @return listePersonnages
+     */
+    public Personnage[] getListePersonnages() {
+        return this.listePersonnages;
     }
 
     /***
@@ -67,11 +80,14 @@ public class PlateauDeJeu {
         return j;
     }
 
-
-    public Joueur[] getListeJoueurs()
-    {
+    /***
+     * Renvoie la liste des personnages
+     * @return listePersonnages
+     */
+    public Joueur[] getListeJoueurs() {
         return this.listeJoueurs;
     }
+
     /**
      * Ajouter un nouveau personnage dans le plateau de jeu
      * @param nouveau : nouveau personnage
@@ -81,13 +97,16 @@ public class PlateauDeJeu {
         if(nouveau != null){
             boolean isFull = true;
             for(int i=0; i<=listePersonnages.length-1; i++){
-                if(listePersonnages[i] == null) isFull = false;
+                if (listePersonnages[i] == null) {
+                    isFull = false;
+                    break;
+                }
             }
 
             if(!isFull){
                 boolean isAlreadyAdded = false;
                 for(int i=0; i<=listePersonnages.length-1; i++){
-                    if(listePersonnages[i] == null && isAlreadyAdded == false){
+                    if(listePersonnages[i] == null && !isAlreadyAdded){
                         listePersonnages[i] = nouveau;
                         this.nombrePersonnages++;
                         isAlreadyAdded = true;
@@ -107,13 +126,16 @@ public class PlateauDeJeu {
         if(nouveau != null) {
             boolean isFull = true;
             for (int i = 0; i <= listeJoueurs.length - 1; i++) {
-                if (listeJoueurs[i] == null) isFull = false;
+                if (listeJoueurs[i] == null) {
+                    isFull = false;
+                    break;
+                }
             }
 
             if (!isFull) {
                 boolean isAlreadyAdded = false;
                 for (int i = 0; i <= listeJoueurs.length - 1; i++) {
-                    if (listeJoueurs[i] == null && isAlreadyAdded == false) {
+                    if (listeJoueurs[i] == null && !isAlreadyAdded) {
                         listeJoueurs[i] = nouveau;
                         this.nombreJoueurs++;
                         isAlreadyAdded = true;

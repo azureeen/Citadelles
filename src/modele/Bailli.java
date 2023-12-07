@@ -11,8 +11,10 @@ public class Bailli extends Personnage {
         super("Bailli",9,Caracteristiques.BAILLI);
     }
 
+    /**
+     * TODO
+     */
     public void utiliserPouvoir(){
-
         if(Jeu.orDesTaxes != 0){
             boolean recupererLOr = false;
             System.out.println("Voulez-vous récupérer l'or des taxes ?");
@@ -23,13 +25,18 @@ public class Bailli extends Personnage {
                 Jeu.orDesTaxes = 0;
             }
         }
-        
-
     }
+
+    /**
+     * TODO
+     */
     public void percevoirRessourcesSpecifiques(){
 
     }
 
+    /**
+     * TODO
+     */
     public void utiliserPouvoirAvatar(){
         Random generateur = new Random();
         if(Jeu.orDesTaxes != 0){
@@ -45,6 +52,10 @@ public class Bailli extends Personnage {
         
     }
 
+    /**
+     * TODO
+     * @param joueurSorciere
+     */
     @Override
     public void activationPouvoirSorciere(Joueur joueurSorciere) {
         // TODO Auto-generated method stub

@@ -20,16 +20,16 @@ public class Espion extends Personnage {
             choixJ = Interaction.lireUnEntier(0, this.getPlateau().getNombreJoueurs())-1;
             if(choixJ==-1){
                 break;
-            }else if(this.getPlateau().getJoueur(choixJ).nbQuartiersReelDansMain()==0){
+            }else if(this.getPlateau().getJoueur(choixJ).nbQuartiersDansMain()==0){
                 System.out.println("Le joueur n'a pas de carte en main");
             }
             
-        } while (this.getPlateau().getJoueur(choixJ)==this.getJoueur()||this.getPlateau().getJoueur(choixJ).nbQuartiersReelDansMain()==0);
+        } while (this.getPlateau().getJoueur(choixJ)==this.getJoueur()||this.getPlateau().getJoueur(choixJ).nbQuartiersDansMain()==0);
         if(choixJ!=-1){
             System.out.println("Choisissez le type de Quartier(1 pour RELIGIEUX, 2 pour MILITAIRES, 3 pour NOBLES, 4 pour COMMERCANT, 5 pour MERVEILLE): ");
             int choixQ = Interaction.lireUnEntier(1, 5)-1;
             int compteur = 0;
-            for(int i=0; i<this.getPlateau().getJoueur(choixJ).nbQuartiersReelDansMain(); i++){
+            for(int i=0; i<this.getPlateau().getJoueur(choixJ).nbQuartiersDansMain(); i++){
                 Quartier q = this.getPlateau().getJoueur(choixJ).getMain().get(i);
                 if(q.getType().equals(Quartier.TYPE_QUARTIERS[choixQ])){
                     compteur++;
@@ -55,7 +55,7 @@ public class Espion extends Personnage {
                     if(q.getType().equals("MERVEILLE")){
                         System.out.println("Caracteristiques du quartier: "+q.getCaracteristiques());
                     }
-                    System.out.println("Coût de construction: "+q.getCout()+"\n");
+                    System.out.println("Coût de construction: "+q.getCoutConstruction()+"\n");
                 }
             }
         }
@@ -69,15 +69,15 @@ public class Espion extends Personnage {
             choixJ = random.nextInt(this.getPlateau().getNombreJoueurs()+1)-1;
             if(choixJ==-1){
                 break;
-            }else if(this.getPlateau().getJoueur(choixJ).nbQuartiersReelDansMain()==0){
+            }else if(this.getPlateau().getJoueur(choixJ).nbQuartiersDansMain()==0){
                 System.out.println("Le joueur n'a pas de carte en main");
             }
-        } while (this.getPlateau().getJoueur(choixJ)==this.getJoueur()||this.getPlateau().getJoueur(choixJ).nbQuartiersReelDansMain()==0);
+        } while (this.getPlateau().getJoueur(choixJ)==this.getJoueur()||this.getPlateau().getJoueur(choixJ).nbQuartiersDansMain()==0);
         if(choixJ!=-1){
             System.out.println("Choisissez le type de Quartier(1 pour RELIGIEUX, 2 pour MILITAIRES, 3 pour NOBLES, 4 pour COMMERCANT, 5 pour MERVEILLE): ");
             int choixQ = random.nextInt(5);
             int compteur = 0;
-            for(int i=0; i<this.getPlateau().getJoueur(choixJ).nbQuartiersReelDansMain(); i++){
+            for(int i=0; i<this.getPlateau().getJoueur(choixJ).nbQuartiersDansMain(); i++){
                 Quartier q = this.getPlateau().getJoueur(choixJ).getMain().get(i);
                 if(q.getType().equals(Quartier.TYPE_QUARTIERS[choixQ])){
                     compteur++;

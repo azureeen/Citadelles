@@ -19,13 +19,13 @@ public class Archiviste extends Personnage {
         System.out.println("Vous pouvez piocher 7 cartes et en garder 1. \nVeuillez choisir une carte à garder.");
         for(int i=0; i<7; i++){
             if(this.getPlateau().getPioche().nombreElements()>0){
-                piocheJoueur.add(this.getPlateau().getPioche().piocher());System.out.println((i+1)+". Nom: "+piocheJoueur.get(i).getNom()+"\ntype: "+piocheJoueur.get(i).getType()+"\ncout: "+piocheJoueur.get(i).getCout());
+                piocheJoueur.add(this.getPlateau().getPioche().piocher());System.out.println((i+1)+". Nom: "+piocheJoueur.get(i).getNom()+"\ntype: "+piocheJoueur.get(i).getType()+"\ncout: "+piocheJoueur.get(i).getCoutConstruction());
             }else{
                 System.out.println("La pioche est vide");
                 break;
             }
         }
-        if(piocheJoueur.size()!=0){
+        if(!piocheJoueur.isEmpty()){
             int choix = Interaction.lireUnEntier(1, piocheJoueur.size())-1;
             this.getJoueur().ajouterQuartierDansMain(piocheJoueur.get(choix));
             piocheJoueur.remove(choix);
@@ -46,7 +46,7 @@ public class Archiviste extends Personnage {
         System.out.println("Vous pouvez piocher 7 cartes et en garder 1. \nVeuillez choisir une carte à garder.");
         for(int i=0; i<7; i++){
             if(this.getPlateau().getPioche().nombreElements()>0){
-                piocheJoueur.add(this.getPlateau().getPioche().piocher());System.out.println((i+1)+". Nom: "+piocheJoueur.get(i).getNom()+"\ntype: "+piocheJoueur.get(i).getType()+"\ncout: "+piocheJoueur.get(i).getCout());
+                piocheJoueur.add(this.getPlateau().getPioche().piocher());System.out.println((i+1)+". Nom: "+piocheJoueur.get(i).getNom()+"\ntype: "+piocheJoueur.get(i).getType()+"\ncout: "+piocheJoueur.get(i).getCoutConstruction());
             }else{
                 System.out.println("La pioche est vide");
                 break;
@@ -54,12 +54,12 @@ public class Archiviste extends Personnage {
             
         }
         Random random = new Random();
-        if(piocheJoueur.size()!=0){
+        if(!piocheJoueur.isEmpty()){
             int choix = random.nextInt(piocheJoueur.size());
             this.getJoueur().ajouterQuartierDansMain(piocheJoueur.get(choix));
             piocheJoueur.remove(choix);
-            for(int i=0;i<piocheJoueur.size();i++){
-                this.getPlateau().getPioche().ajouter(piocheJoueur.get(i));
+            for (Quartier quartier : piocheJoueur) {
+                this.getPlateau().getPioche().ajouter(quartier);
             }
         }
         

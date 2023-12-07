@@ -15,7 +15,7 @@ public class Sorcier extends Personnage {
             Joueur joueur = this.getPlateau().getJoueur(i);
             if(joueur.getPersonnage().getRang() != 3){
                 System.out.println((i+1)+". "+ joueur.getNom());
-            }else{}  
+            }
         }  
 
         System.out.println("Veuillez sélectionner le Joueur dont vous voulez voir la main : (0 pour ne rien faire) " );
@@ -25,12 +25,12 @@ public class Sorcier extends Personnage {
         if(joueurVoirMain != -1 && this.getPlateau().getJoueur(joueurVoirMain).getMain() != null ){
 
             for(int k = 0; k < this.getPlateau().getJoueur(joueurVoirMain).getMain().size(); k++){
-                System.out.println((k+1) + ". " + this.getPlateau().getJoueur(joueurVoirMain).getMain().get(k).getNom() + " (" + this.getPlateau().getJoueur(joueurVoirMain).getMain().get(k).getCout() + " piece(s))");
+                System.out.println((k+1) + ". " + this.getPlateau().getJoueur(joueurVoirMain).getMain().get(k).getNom() + " (" + this.getPlateau().getJoueur(joueurVoirMain).getMain().get(k).getCoutConstruction() + " piece(s))");
             }
 
             System.out.println("Quel quartier souhaitez-vous choisir ?");
 
-            if(this.getPlateau().getJoueur(joueurVoirMain).nbQuartiersReelDansMain()>0){
+            if(this.getPlateau().getJoueur(joueurVoirMain).nbQuartiersDansMain()>0){
 
                 int quartierAPrendre = Interaction.lireUnEntier(1, this.getPlateau().getJoueur(joueurVoirMain).getMain().size()) - 1;
 
@@ -38,18 +38,18 @@ public class Sorcier extends Personnage {
 
                 this.getPlateau().getJoueur(joueurVoirMain).getMain().remove(quartierAPrendre);
 
-                if(this.getJoueur().nbPieces() < quartierC2.getCout()){
+                if(this.getJoueur().nbPieces() < quartierC2.getCoutConstruction()){
                     this.getJoueur().ajouterQuartierDansMain(quartierC2);
                     System.out.println("Vous n'avez pas assez d'argent pour bâtir ce quartier, il est ajouté à votre main.");
                 }
 
                 else{
-                    System.out.println("Le quartier coûte : "+ quartierC2.getCout() +" piece(s) vous avez "+ this.getJoueur().nbPieces() +" piece(s) d'or, voulez-vous le bâtir ?");
+                    System.out.println("Le quartier coûte : "+ quartierC2.getCoutConstruction() +" piece(s) vous avez "+ this.getJoueur().nbPieces() +" piece(s) d'or, voulez-vous le bâtir ?");
 
-                    Boolean construire = Interaction.lireOuiOuNon();
+                    boolean construire = Interaction.lireOuiOuNon();
 
                     if(construire){
-                        this.getJoueur().retirerPieces(quartierC2.getCout());
+                        this.getJoueur().retirerPieces(quartierC2.getCoutConstruction());
                         this.getJoueur().ajouterQuartierDansCite(quartierC2); 
                     }
                     else{
@@ -75,7 +75,7 @@ public class Sorcier extends Personnage {
             Joueur joueur = this.getPlateau().getJoueur(i);
             if(joueur.getPersonnage().getRang() != 3){
                 System.out.println((i+1)+". "+ joueur.getNom());
-            }else{}  
+            }
         }  
 
         System.out.println("Veuillez sélectionner le Joueur dont vous voulez voir la main : (0 pour ne rien faire) " );
@@ -85,29 +85,29 @@ public class Sorcier extends Personnage {
         if(joueurVoirMain != -1 && this.getPlateau().getJoueur(joueurVoirMain).getMain() != null ){
 
             for(int k = 0; k < this.getPlateau().getJoueur(joueurVoirMain).getMain().size(); k++){
-                System.out.println((k+1) + ". " + this.getPlateau().getJoueur(joueurVoirMain).getMain().get(k).getNom() + " (" + this.getPlateau().getJoueur(joueurVoirMain).getMain().get(k).getCout() + " piece(s))");
+                System.out.println((k+1) + ". " + this.getPlateau().getJoueur(joueurVoirMain).getMain().get(k).getNom() + " (" + this.getPlateau().getJoueur(joueurVoirMain).getMain().get(k).getCoutConstruction() + " piece(s))");
             }
 
             System.out.println("Quel quartier souhaitez-vous choisir ?");
-            if(this.getPlateau().getJoueur(joueurVoirMain).nbQuartiersReelDansMain()>0){
+            if(this.getPlateau().getJoueur(joueurVoirMain).nbQuartiersDansMain()>0){
                 int quartierAPrendre = generateur.nextInt(this.getPlateau().getJoueur(joueurVoirMain).getMain().size());
 
                 Quartier quartierC2 = this.getPlateau().getJoueur(joueurVoirMain).getMain().get(quartierAPrendre);
 
                 this.getPlateau().getJoueur(joueurVoirMain).getMain().remove(quartierAPrendre);
 
-                if(this.getJoueur().nbPieces() < quartierC2.getCout()){
+                if(this.getJoueur().nbPieces() < quartierC2.getCoutConstruction()){
                     this.getJoueur().ajouterQuartierDansMain(quartierC2);
                     System.out.println("Vous n'avez pas assez d'argent pour bâtir ce quartier, il est ajouté à votre main.");
                 }
 
                 else{
-                    System.out.println("Le quartier coûte : "+ quartierC2.getCout() +" piece(s) vous avez "+ this.getJoueur().nbPieces() +" piece(s) d'or, voulez-vous le bâtir ?");
+                    System.out.println("Le quartier coûte : "+ quartierC2.getCoutConstruction() +" piece(s) vous avez "+ this.getJoueur().nbPieces() +" piece(s) d'or, voulez-vous le bâtir ?");
 
-                    Boolean construire = generateur.nextBoolean();
+                    boolean construire = generateur.nextBoolean();
 
                     if(construire){
-                        this.getJoueur().retirerPieces(quartierC2.getCout());
+                        this.getJoueur().retirerPieces(quartierC2.getCoutConstruction());
                         this.getJoueur().ajouterQuartierDansCite(quartierC2); 
                     }
                     else{

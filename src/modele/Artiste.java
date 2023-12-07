@@ -58,12 +58,12 @@ public class Artiste extends Personnage {
         }
     }
 
-    /*@Override
+    @Override
     public void activationPouvoirSorciere(Joueur joueurSorciere) {
         // TODO Auto-generated method stub
         
     }
-*/
+
    
 
 }

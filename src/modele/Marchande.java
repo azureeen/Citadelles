@@ -11,7 +11,7 @@ public class Marchande extends Personnage {
         if(this.getAssassine()){
             super.percevoirRessourcesSpecifiques();
         }else{
-            for(int i = 0; i < this.getJoueur().nbQuartiersReelDansCite(); i++){
+            for(int i = 0; i < this.getJoueur().nbQuartiersDansCite(); i++){
                 if(this.getJoueur().getCite()[i].getType().equals(Quartier.TYPE_QUARTIERS[3])){
                     this.getJoueur().ajouterPieces(1);
                 }

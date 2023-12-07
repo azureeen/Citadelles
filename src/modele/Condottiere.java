@@ -1,441 +1,155 @@
 package modele;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
-
 import Controleur.Interaction;
-import Exception.CantChoose;
-import Exception.NePeutPasDetruire;
-import Exception.TresorInsuffisant;
-import Exception.WrongInput;
-import application.Configuration;
-import application.Jeu;
 
-public class Condottiere extends Personnage {
-    public Condottiere(){
+import java.util.Objects;
+
+public class Condottiere extends Personnage{
+
+    /**
+     * Constructeur Condottiere
+     */
+    public Condottiere() {
         super("Condottiere", 8, Caracteristiques.CONDOTTIERE);
     }
-    
-    @Override
-    public void percevoirRessourcesSpecifiques() {
-        // TODO Auto-generated method stub    
-        if(this.getAssassine()){
-            super.percevoirRessourcesSpecifiques();
-        }else{
-            for(int i = 0; i < this.getJoueur().nbQuartiersReelDansCite(); i++){
-                if(this.getJoueur().getCite()[i]!=null){
-                    if(this.getJoueur().getCite()[i].getType().equals(Quartier.TYPE_QUARTIERS[1])){
-                        this.getJoueur().ajouterPieces(1);
-                    }
-                }
-                
-            }
-        }
-      
-    }
 
+    /**
+     * Utiliser le pouvoir du Condottiere
+     * Pouvoir détruire les quartiers d’une cité non complète d’un joueur adverse ou de sa propre cité.
+     */
     @Override
     public void utiliserPouvoir() {
-        // TODO Auto-generated method stub
-        if(this.getAssassine()){
+        if(!getAssassine() && getJoueur() != null){
+            Personnage[] listePersonnages = this.getPlateau().getListePersonnages();
+            Joueur[] listeJoueurs = this.getPlateau().getListeJoueurs();
 
-            System.out.println("Votre personnage a ete assassine");
+            // Affichage Question
+            String ouiOuNon;
+            do {
+                System.out.print("Voulez-vous utiliser votre pouvoir de destruction ? (O/N) : ");
+                ouiOuNon = Interaction.lireUneChaine();
+            } while (!Objects.equals(ouiOuNon, "O") && !Objects.equals(ouiOuNon, "N"));
 
-        }else{
+            // Si le joueur n'utilise pas le pouvoir alors, on quitte la méthode
+            if(ouiOuNon.equals("N")) return;
 
-            Interaction int3 = new Interaction(); 
-            System.out.println("Voulez-vous utiliser votre pouvoir de destruction ? (o/n) ");
-            boolean reponse  = int3.lireOuiOuNon();
+            // Sinon, on affiche les quartiers détenus par les différents joueurs
+            int nbJoueurs=0;
+            for (Joueur joueur : listeJoueurs) {
+                StringBuilder quartiersDuJoueur = new StringBuilder();
 
-            if(reponse){
-                System.out.println("Voici la liste des joueurs et le contenu de leur cite : ");
-                for(int i = 0; i < this.getPlateau().getNombreJoueurs(); i++){
-
-                    System.out.println((i+1) + " " + this.getPlateau().getJoueur(i).getNom() + ": ");
-
-                    for(int j =0; j< this.getPlateau().getJoueur(i).nbQuartiersReelDansCite(); j++){
-                        if(this.getPlateau().getJoueur(i).getCite()[j]!=null){
-                            System.out.println("    " + (j+1) + "."+ this.getPlateau().getJoueur(i).getCite()[j].getNom() + " (" + (this.getPlateau().getJoueur(i).getCite()[j].getCout() -1) + "pieces" + ")," );
-                                                
-                        }
-                        
+                // Récupération des quartiers du joueur dans une variable destinée à l'affichage
+                if (joueur != null) {
+                    int nbQuartiers = 0;
+                    for (Quartier quartier : joueur.getCite()) {
+                        if (quartier != null) quartiersDuJoueur.append(" ").append(nbQuartiers + 1).append(" ").append(quartier.getNom()).append("(coût ").append(quartier.getCoutConstruction()).append("),");
+                        nbQuartiers++;
                     }
-
                 }
 
-                System.out.println("Pour information, vous avez " + this.getJoueur().nbPieces() + " pièce(s) d'or   dans votre trésor");
-                boolean continu = true;
+                // Affichage dans la console
+                if(joueur != null) {
+                    System.out.println("    " + String.valueOf(nbJoueurs+1) + " " + joueur.getNom() + " " + quartiersDuJoueur);
+                    nbJoueurs++;
+                }
+            }
 
-                do{
+            System.out.println("Pour information, vous avez " + getJoueur().nbPieces() + " pièces d’or dans votre trésor");
 
-                    try{
+            int joueurChoisiIndex;
+            boolean joueurPossedeEveque;
+            boolean joueurPossedeCiteComplete;
 
-                        System.out.println("Quel joueur choisissez-vous ? (0 pour ne rien faire) ");
-                        int i1 = Interaction.lireUnEntier(0, this.getPlateau().getNombreJoueurs());
-                        
+            do {
+                // Initialize boolean
+                joueurPossedeEveque = false;
+                joueurPossedeCiteComplete = false;
 
-                        if(!(i1 == 0) && !this.getPlateau().getJoueur(i1-1).getPersonnage().getNom().equals("Eveque")){
-                            boolean condition = false;
+                // Demander à l'utilisateur quel joueur choisit-il et verifier s'il entre une valeur valide
+                System.out.println("NB Joueurs : " + nbJoueurs);
+                System.out.print("Quel joueur choisissez-vous ? ");
+                joueurChoisiIndex = Interaction.lireUnEntier();
 
-                            //implémentation de la merveille donjon
-
-                            //implémentation de la merveille Grande Muraille
-                            boolean aGrandeMuraille = false;
-
-                            //-----------------------------------------------------------------------//
-
-                            if(this.getPlateau().getJoueur(i1-1).nbQuartiersReelDansCite()==8){
-                                throw new NePeutPasDetruire();
-                            }
-                            //-----------------------------------------------------------------------//
-
-                            for(int i = 0; i < this.getPlateau().getJoueur(i1-1).nbQuartiersReelDansCite();i++){
-                                if(this.getPlateau().getJoueur(i1-1).getCite()[i].getCout() - 1 <= this.getJoueur().nbPieces() && !this.getPlateau().getJoueur(i1-1).getCite()[i].equals(Configuration.donjon) && !this.getPlateau().getJoueur(i1-1).getCite()[i].equals(Configuration.donjon)){
-                                    condition = true;
-                                }else if(this.getPlateau().getJoueur(i1-1).getCite()[i].equals(Configuration.grandeMuraille)){
-                                    for(int j = 0; j < this.getPlateau().getJoueur(i1-1).nbQuartiersReelDansCite(); j++){
-                                        if(this.getPlateau().getJoueur(i1-1).getCite()[i].getCout()+1 < this.getJoueur().nbPieces()){
-                                            condition = true;
-                                            aGrandeMuraille = true;
-                                        }
-                                    }
-                                }
-                            }
-
-                        //-----------------------------------------------------------------------//
-
-    
-                            if(!condition){
-                                throw new CantChoose();
-                            }
-    
-                            Interaction int2 = new Interaction();
-                            boolean continu2 = true;
-                            do{
-                                try{
-                                    System.out.println("Quel quartier choisissez-vous ?");
-                                    int i2 = int2.lireUnEntier(1, this.getPlateau().getJoueur((i1 - 1)).nbQuartiersReelDansCite());
-
-                                    if(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getCout() - 1  > this.getJoueur().nbPieces()){
-                                        throw new TresorInsuffisant();
-                                    }
-                                    
-                                    //-----------------------------------------------------------------------//
-
-
-                                    else if(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].equals(Configuration.donjon)){
-                                        throw new NePeutPasDetruire();
-                                    }
-
-                                    //-----------------------------------------------------------------------//
-
-
-                                    else if (aGrandeMuraille){
-                                        System.out.println("Vous avez choisi un joueur possedant la merveille grande muraille, les quartiers que vous essayerez de détruire auront un cout d'une piece en plus.\n");
-                                        
-                                        if(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getCout() > this.getJoueur().nbPieces()){
-                                            throw new TresorInsuffisant();
-                                        }
-
-                                        //-----------------------------------------------------------------------//
-
-
-                                        if(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].equals(Configuration.musee)){
-                                            int copie = this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getCout();
-                                            this.getPlateau().getJoueur(i1-1).retirerQuartierDansCite(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getNom());
-    
-                                            for(int j = 0; j < Jeu.quartiersSousMusee.size(); j++){
-                                                this.getPlateau().getPioche().ajouter(Jeu.quartiersSousMusee.get(j));
-                                            }
-    
-                                            Jeu.quartiersSousMusee.clear();
-    
-                                            System.out.println("Quartier correctement détruit");
-                                            this.getJoueur().retirerPieces(copie-1);
-                                            System.out.println("Pour information, votre trésor est constitue de " + this.getJoueur().nbPieces() + " pièce(s) d'or");
-                                        } 
-
-                                        //-----------------------------------------------------------------------//
-
-
-                                        else{
-                                            int copie = this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getCout();
-                                            this.getPlateau().getJoueur(i1-1).retirerQuartierDansCite(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getNom());
-                                            System.out.println("Quartier correctement détruit");
-                                            this.getJoueur().retirerPieces(copie);
-                                            System.out.println("Pour information, votre trésor est constitue de " + this.getJoueur().nbPieces() + " pièce(s) d'or");
-                                        }
-
-                                        
-                                    }
-
-                                    //-----------------------------------------------------------------------//
-
-
-                                    else if(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].equals(Configuration.musee)){
-                                        int copie = this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getCout();
-                                        this.getPlateau().getJoueur(i1-1).retirerQuartierDansCite(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getNom());
-
-                                        for(int j = 0; j < Jeu.quartiersSousMusee.size(); j++){
-                                            this.getPlateau().getPioche().ajouter(Jeu.quartiersSousMusee.get(j));
-                                        }
-
-                                        Jeu.quartiersSousMusee.clear();
-
-                                        System.out.println("Quartier correctement détruit");
-                                        this.getJoueur().retirerPieces(copie-1);
-                                        System.out.println("Pour information, votre trésor est constitue de " + this.getJoueur().nbPieces() + " pièce(s) d'or");
-                                    }
-
-                                    //-----------------------------------------------------------------------//
-
-
-                                    else{
-                                        int copie = this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getCout();
-                                        this.getPlateau().getJoueur(i1-1).retirerQuartierDansCite(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getNom());
-                                        System.out.println("Quartier correctement détruit");
-                                        this.getJoueur().retirerPieces(copie-1);
-                                        System.out.println("Pour information, votre trésor est constitue de " + this.getJoueur().nbPieces() + " pièce(s) d'or");
-                                    }
-
-                                    continu2 = false;
-                                }catch(TresorInsuffisant e){
-                                    System.out.println("Votre trésor n'est pas suffisant");
-                                    
-                                }catch(NePeutPasDetruire e){
-                                    System.out.println("Vous ne pouvez pas détruire ce quartier");
-                                }
-                               
-                            }while(continu2);
-                            if(this.getPlateau().getJoueur(i1-1).getPersonnage().getNom().equals("Eveque")){
-                                throw new CantChoose();
-                            }
-                        }else{
-                            //ne pas utiliser le pouvoir
-                            System.out.println("ne rien faire");
-                        }
-
-                        
-                        
-                        continu = false;
-                    }catch(CantChoose e){
-                        System.out.println("Tous les quartiers de ce joueur sont au-dessus de vos moyens, vous ne pouvez pas le choisir (ou vous avez choisi l'Eveque).");
-                    }catch(NePeutPasDetruire e){
-                        System.out.println("Le joueur a déjà 8 quartier, vous ne pouvez pas détruire de quartier.");
+                // Les quartiers de l'Évêque ne peuvent pas être altérés par les pouvoirs de personnages de rang 8
+                for (Personnage personnage: listePersonnages) {
+                    if (personnage!= null && Objects.equals(personnage.getNom(), "Eveque") && personnage.getJoueur() == listePersonnages[joueurChoisiIndex - 1].getJoueur() && !personnage.getAssassine()) {
+                        joueurPossedeEveque = true;
+                        System.out.println("Ce joueur possède un Évêque, impossible de détruire un de ses quartiers");
                     }
-                }while(continu);
-              
+                }
+
+                // Les cités complètes ne peuvent avoir un quartier détruit
+                boolean auMoinsUnQuartierNull = false;
+                for (int i=0; i < listeJoueurs[joueurChoisiIndex -1].getCite().length; i++) {
+                    if (listeJoueurs[joueurChoisiIndex -1].getCite()[i] == null) {
+                        auMoinsUnQuartierNull = true;
+                        break;
+                    }
+                }
+                if (!auMoinsUnQuartierNull){
+                    joueurPossedeCiteComplete = true;
+                    System.out.println("Ce joueur possède une cité complète, impossible de détruire un de ses quartiers");
+                }
+            } while (joueurPossedeEveque || joueurPossedeCiteComplete || joueurChoisiIndex < 1 || joueurChoisiIndex > nbJoueurs);
+
+            // Compter le nombre de quartiers dans la cité du joueur choisi
+            int nbQuartiersDansCiteDuJoueur = 0;
+            for (Quartier quartier: listePersonnages[joueurChoisiIndex - 1].getJoueur().getCite()) {
+                if (quartier != null) nbQuartiersDansCiteDuJoueur++;
+            }
+
+
+            // Demander à l'utilisateur quel quartier choisit-il et verifier s'il entre une valeur valide
+            int quartierChoisiIndex;
+            do {
+                System.out.print("Quel quartier choisissez-vous ? ");
+                quartierChoisiIndex = Interaction.lireUnEntier();
+            } while (quartierChoisiIndex < 1 || quartierChoisiIndex > nbQuartiersDansCiteDuJoueur);
+
+
+            // Savoir si le Condottiere a assez de pieces pour détruire le quartier choisi
+            Joueur joueurChoisi = listePersonnages[joueurChoisiIndex -1].getJoueur();
+            Quartier quartierChoisi = joueurChoisi.getCite()[quartierChoisiIndex -1];
+
+            if (getJoueur().nbPieces() >= quartierChoisi.getCoutConstruction() - 1){
+                Quartier quartierDetruit = joueurChoisi.retirerQuartierDansCite(quartierChoisi.getNom());
+                System.out.println("On retire " + quartierDetruit.getNom() + " à " + joueurChoisi.getNom());
+                System.out.println("Pour information, vous avez maintenant " + getJoueur().nbPieces() + " pièces d’or dans votre trésor");
+            } else {
+                System.out.println("Votre trésor n’est pas suffisant ! Le coût pour détruire ce quartier est de " + quartierChoisi.getCoutConstruction());
+                System.out.println("Pour information, vous avez " + getJoueur().nbPieces() + " pièces d’or dans votre trésor");
+            }
 
         }
-       
-           
+    }
 
+    /**
+     * Percevoir ressources spécifiques du Condottiere
+     */
+    @Override
+    public void percevoirRessourcesSpecifiques() {
+        if(!getAssassine() && getJoueur() != null){
 
+            int nbQuartiersMilitaires = 0;
+            for(int i = 0 ; i < getJoueur().getCite().length; i++) {
 
-
+                if(getJoueur().getCite()[i] != null && Objects.equals(getJoueur().getCite()[i].getType(), "MILITAIRE")){
+                    nbQuartiersMilitaires++;
+                }
+            }
+            getJoueur().ajouterPieces(nbQuartiersMilitaires);
+            System.out.println(nbQuartiersMilitaires + " pièces supplémentaires ont été ajoutées au trésor de " + getJoueur().getNom());
         }
+
     }
 
     @Override
     public void utiliserPouvoirAvatar() {
         // TODO Auto-generated method stub
-        if(this.getAssassine()){
-            System.out.println("Le personnage de " + this.getJoueur().getNom() + " est assassine.");
-        }else{
-            System.out.println("Voulez-vous utiliser votre pouvoir de destruction ? (o/n) ");
-            boolean verite[] = {true, false};
-            int random = ThreadLocalRandom.current().nextInt(-1, 1)+1;
-            boolean reponse  = verite[random];
-            if(reponse){
-                System.out.println("Voici la liste des joueurs et le contenu de leur cite : ");
-                for(int i = 0; i < this.getPlateau().getNombreJoueurs(); i++){
-                    System.out.println((i+1) + " " + this.getPlateau().getJoueur(i).getNom() + ": ");
-                    for(int j =0; j< this.getPlateau().getJoueur(i).nbQuartiersReelDansCite(); j++){
-                        if(this.getPlateau().getJoueur(i).getCite()[j]!=null){
-                            System.out.println("    " + (j+1) + "."+ this.getPlateau().getJoueur(i).getCite()[j].getNom() + " (" + (this.getPlateau().getJoueur(i).getCite()[j].getCout() -1) + "pieces" + ")," );
-                                                
-                        }
-                        
-                    }
-                }
-                System.out.println("Pour information, vous avez " + this.getJoueur().nbPieces() + " pièce(s) d'or   dans votre trésor");
-                boolean continu = true;
-                do{
-                    try{
-                        System.out.println("Quel joueur choisissez-vous ? (0 pour ne rien faire) ");
-                        Random random3 = new Random();
-                        int i1 = random3.nextInt(this.getPlateau().getNombreJoueurs());
-                        
-                        if(!(i1 == 0)&& !this.getPlateau().getJoueur(i1-1).getPersonnage().getNom().equals("Eveque")){
-                            boolean condition = false;
-
-                            //implémentation de la merveille donjon
-
-                            Quartier donjon = new Quartier("Donjon", "MERVEILLE", 3, "Le Donjon ne peut etre affecte par les pouvoirs des personnages de rang 8.");
-
-                             //implémentation de la merveille Grande Muraille
-                             boolean aGrandeMuraille = false;
-
-                            //-----------------------------------------------------------------------//
-
-                            if(this.getPlateau().getJoueur(i1-1).nbQuartiersReelDansCite()==8){
-                                throw new NePeutPasDetruire();
-                            }
-                            //-----------------------------------------------------------------------//
-
- 
-                             for(int i = 0; i < this.getPlateau().getJoueur(i1-1).nbQuartiersReelDansCite();i++){
-                                 if(this.getPlateau().getJoueur(i1-1).getCite()[i].getCout() - 1 <= this.getJoueur().nbPieces() && !this.getPlateau().getJoueur(i1-1).getCite()[i].equals(Configuration.donjon) && !this.getPlateau().getJoueur(i1-1).getCite()[i].equals(donjon)){
-                                     condition = true;
-                                 }else if(this.getPlateau().getJoueur(i1-1).getCite()[i].equals(Configuration.grandeMuraille)){
-                                     for(int j = 0; j < this.getPlateau().getJoueur(i1-1).nbQuartiersReelDansCite(); j++){
-                                         if(this.getPlateau().getJoueur(i1-1).getCite()[i].getCout()+1 < this.getJoueur().nbPieces()){
-                                             condition = true;
-                                             aGrandeMuraille = true;
-                                         }
-                                     }
-                                 }
-                             }
-
-                            //-----------------------------------------------------------------------//
-
-    
-                            if(!condition){
-                                throw new CantChoose();
-                            }
-                            boolean continu2 = true;
-                            do{
-                                try{
-                                    System.out.println("Quel quartier choisissez-vous ?");
-                                    int i2 = ThreadLocalRandom.current().nextInt(0, this.getPlateau().getJoueur((i1 - 1)).nbQuartiersReelDansCite()) +1;
-                                    if(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getCout() - 1  > this.getJoueur().nbPieces()){
-                                        throw new TresorInsuffisant();
-                                    }
-                                    
-                                        
-                                    //-----------------------------------------------------------------------//
-
-                                    else if(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].equals(Configuration.donjon)){
-                                        throw new NePeutPasDetruire();
-                                    }
-
-                                    //-----------------------------------------------------------------------//
-
-
-                                    else if (aGrandeMuraille){
-                                        System.out.println("Vous avez choisi un joueur possedant la merveille grande muraille, les quartiers que vous essayerez de détruire auront un cout d'une piece en plus.\n");
-                                        if(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getCout() > this.getJoueur().nbPieces()){
-                                            throw new TresorInsuffisant();
-                                        }
-
-                                        //-----------------------------------------------------------------------//
-
-                                        else if(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].equals(Configuration.musee)){
-                                            int copie = this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getCout();
-                                            this.getPlateau().getJoueur(i1-1).retirerQuartierDansCite(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getNom());
-
-                                            for(int j = 0; j < Jeu.quartiersSousMusee.size(); j++){
-                                                this.getPlateau().getPioche().ajouter(Jeu.quartiersSousMusee.get(j));
-                                            }
-
-                                            Jeu.quartiersSousMusee.clear();
-
-                                            System.out.println("Quartier correctement détruit");
-                                            this.getJoueur().retirerPieces(copie-1);
-                                            System.out.println("Pour information, votre trésor est constitue de " + this.getJoueur().nbPieces() + " pièce(s) d'or");
-                                        }
-
-                                        //-----------------------------------------------------------------------//
-
-
-                                        else{
-                                            int copie = this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getCout();
-                                            this.getPlateau().getJoueur(i1-1).retirerQuartierDansCite(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getNom());
-                                            System.out.println("Quartier correctement détruit");
-                                            this.getJoueur().retirerPieces(copie);
-                                            System.out.println("Pour information, votre trésor est constitue de " + this.getJoueur().nbPieces() + " pièce(s) d'or");
-
-                                        }
-                                        
-                                    }
-
-                                    //-----------------------------------------------------------------------//
-
-
-                                    
-                                    else if(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].equals(Configuration.musee)){
-                                        int copie = this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getCout();
-                                        this.getPlateau().getJoueur(i1-1).retirerQuartierDansCite(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getNom());
-
-                                        for(int j = 0; j < Jeu.quartiersSousMusee.size(); j++){
-                                            this.getPlateau().getPioche().ajouter(Jeu.quartiersSousMusee.get(j));
-                                        }
-
-                                        Jeu.quartiersSousMusee.clear();
-
-                                        System.out.println("Quartier correctement détruit");
-                                        this.getJoueur().retirerPieces(copie-1);
-                                        System.out.println("Pour information, votre trésor est constitue de " + this.getJoueur().nbPieces() + " pièce(s) d'or");
-                                    }
-
-                                    //-----------------------------------------------------------------------//
-
-                                    
-                                    else{
-                                        int copie = this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getCout();
-                                        this.getPlateau().getPioche().ajouter(this.getPlateau().getJoueur(i1-1).getCite()[i2-1]);
-                                        this.getPlateau().getJoueur(i1-1).retirerQuartierDansCite(this.getPlateau().getJoueur(i1-1).getCite()[i2-1].getNom());
-                                        System.out.println("Quartier correctement détruit");
-                                        this.getJoueur().retirerPieces(copie-1);
-                                        System.out.println("Pour information, votre trésor est constitue de " + this.getJoueur().nbPieces() + " pièce(s) d'or");
-                                    }
-
-                                    //-----------------------------------------------------------------------//
-
-                                    continu2 = false;
-                                }catch(TresorInsuffisant e){
-                                    System.out.println("Votre trésor n'est pas suffisant");
-                                }
-                               
-                            }while(continu2);
-                            if(this.getPlateau().getJoueur(i1-1).getPersonnage().getNom().equals("Eveque")){
-                                throw new CantChoose();
-                            }
-                        }else{
-                            //ne pas utiliser le pouvoir
-                            System.out.println("ne rien faire");
-                        }
-                        
-                        
-                        continu = false;
-                    }catch(CantChoose e){
-                        System.out.println("Tous les quartiers de ce joueur sont au-dessus de vos moyens, vous ne pouvez pas le choisir (ou vous avez choisi l'Eveque).");
-                    }
-                    
-                    catch(NePeutPasDetruire e){
-                        System.out.println("Vous ne pouvez pas détruire ce quartier");
-                    }
-
-                }while(continu);
-              
-
-        }
-       
-           
-
-
-
-
-        }
-        
     }
 
     @Override
     public void activationPouvoirSorciere(Joueur joueurSorciere) {
         // TODO Auto-generated method stub
-        
     }
 }

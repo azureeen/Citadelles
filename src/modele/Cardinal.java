@@ -12,7 +12,7 @@ public class Cardinal extends Personnage {
     public void percevoirRessourcesSpecifiques(){
 
         if(this.getJoueur() != null && !this.getAssassine()){
-            for(int i = 0; i < this.getJoueur().nbQuartiersReelDansCite(); i++){
+            for(int i = 0; i < this.getJoueur().nbQuartiersDansCite(); i++){
                 if(this.getJoueur().getCite()[i].getType().equals(Quartier.TYPE_QUARTIERS[0]) && this.getJoueur().getCite()[i] != null){
                     this.getJoueur().ajouterPieces(1);
                 }

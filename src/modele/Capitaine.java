@@ -10,21 +10,21 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.Random;
 
 public class Capitaine extends Personnage{
-
-
-	Interaction scan = new Interaction();
-
+	/**
+	 * Constructeur Capitaine
+	 */
 	public Capitaine() {
 		super("Capitaine", 8, Caracteristiques.CAPITAINE);
-		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 *
+	 */
 	public void percevoirRessourcesSpecifiques() {
-		// TODO Auto-generated method stub    
 		if(this.getAssassine()){
 			super.percevoirRessourcesSpecifiques();
 		}else{
-			for(int i = 0; i < this.getJoueur().nbQuartiersReelDansCite(); i++){
+			for(int i = 0; i < this.getJoueur().nbQuartiersDansCite(); i++){
 				if(this.getJoueur().getCite()[i].getType().equals(Quartier.TYPE_QUARTIERS[1])){
 					this.getJoueur().ajouterPieces(1);
 				}
@@ -50,21 +50,21 @@ public class Capitaine extends Personnage{
 
 
 				for(int i = 0; i < this.getPlateau().getNombreJoueurs(); i++){
-					System.out.println((i+1) + "." + this.getPlateau().getJoueur(i).getNom() + " : " + this.getPlateau().getJoueur(i).nbQuartiersReelDansCite() + " carte(s).");
+					System.out.println((i+1) + "." + this.getPlateau().getJoueur(i).getNom() + " : " + this.getPlateau().getJoueur(i).nbQuartiersDansCite() + " carte(s).");
 				}
 				
 				int choix  = Interaction.lireUnEntier(0, this.getPlateau().getNombreJoueurs()) - 1;
 				
 				if(choix != -1){
-					if(this.getPlateau().getPersonnage(choix).nom.equals(this.nom)){
+					if(this.getPlateau().getPersonnage(choix).getNom().equals(this.getNom())){
 					throw new SelfChosen();
-					}else if(this.getPlateau().getPersonnage(choix).nom.equals("Eveque")) {
+					}else if(this.getPlateau().getPersonnage(choix).getNom().equals("Eveque")) {
 						throw new CantChoose();
 					}
 					
 					Quartier[] citeJoueur = this.getPlateau().getJoueur(choix).getCite();
 					
-					for(int i=0; i<this.getPlateau().getJoueur(choix).nbQuartiersReelDansCite(); i++) {
+					for(int i=0; i<this.getPlateau().getJoueur(choix).nbQuartiersDansCite(); i++) {
 						if(citeJoueur[i].getNom().equals("Grande Muraille")) {
 							aGrandeMuraille = true;
 						}
@@ -78,12 +78,12 @@ public class Capitaine extends Personnage{
 					
 
 					ArrayList<Quartier> copie = new ArrayList<Quartier>();
-					for(int i=0; i<this.getPlateau().getJoueur(choix).nbQuartiersReelDansCite(); i++) {
-						if(citeJoueur[i].getCout()<=3 && this.getJoueur().quartierPresentDansCite(citeJoueur[i].getNom()) == false) {
+					for(int i=0; i<this.getPlateau().getJoueur(choix).nbQuartiersDansCite(); i++) {
+						if(citeJoueur[i].getCoutConstruction()<=3 && !this.getJoueur().quartierPresentDansCite(citeJoueur[i].getNom())) {
 							copie.add(citeJoueur[i]);
 						}
 					}
-					if(copie.size() == 0) {
+					if(copie.isEmpty()) {
 						System.out.println("Ce joueur n'a pas de quartier rentrant dans les crit�res de votre pouvoir");
 						repeter = true;
 					}else {
@@ -91,12 +91,12 @@ public class Capitaine extends Personnage{
 						boolean continu = false;
 						do{
 							for(int i =0; i<copie.size(); i++) {
-								System.out.println((i+1) + " - " + copie.get(i).getNom() + "[ " + copie.get(i).getType() + ", " + copie.get(i).getCout() + " ]");
+								System.out.println((i+1) + " - " + copie.get(i).getNom() + "[ " + copie.get(i).getType() + ", " + copie.get(i).getCoutConstruction() + " ]");
 							}
 			
 							System.out.println("Veuillez choisir le quartier a prendre (0 pour ne rien faire)");
 			
-							int choix1 = scan.lireUnEntier(1, copie.size()) -1;
+							int choix1 = Interaction.lireUnEntier(1, copie.size()) -1;
 			
 							if(choix1 != -1){
 								if(this.getPlateau().getJoueur(choix).getCite()[choix1].getNom().equals("Donjon")){
@@ -105,12 +105,12 @@ public class Capitaine extends Personnage{
 			
 								}else{
 									System.out.println("Voulez vous construire " + this.getPlateau().getJoueur(choix).getCite()[choix1].getNom() + " ?");
-									Boolean choixConstruct = scan.lireOuiOuNon();
+									boolean choixConstruct = Interaction.lireOuiOuNon();
 									if(choixConstruct) {
-										if(this.getJoueur().nbPieces()>= this.getPlateau().getJoueur(choix).getCite()[choix1].getCout()) {
+										if(this.getJoueur().nbPieces()>= this.getPlateau().getJoueur(choix).getCite()[choix1].getCoutConstruction()) {
 											this.getJoueur().ajouterQuartierDansCite(this.getPlateau().getJoueur(choix).getCite()[choix1]);
-											this.getJoueur().retirerPieces(this.getPlateau().getJoueur(choix).getCite()[choix1].getCout() + prixEnPlus);
-											this.getPlateau().getJoueur(choix).ajouterPieces(this.getPlateau().getJoueur(choix).getCite()[choix1].getCout() + prixEnPlus);
+											this.getJoueur().retirerPieces(this.getPlateau().getJoueur(choix).getCite()[choix1].getCoutConstruction() + prixEnPlus);
+											this.getPlateau().getJoueur(choix).ajouterPieces(this.getPlateau().getJoueur(choix).getCite()[choix1].getCoutConstruction() + prixEnPlus);
 											this.getPlateau().getJoueur(choix).retirerQuartierDansCite(this.getPlateau().getJoueur(choix).getCite()[choix1].getNom());
 											
 											continu = false;
@@ -168,19 +168,19 @@ public class Capitaine extends Personnage{
 			try {
 
 				for(int i = 0; i < this.getPlateau().getNombreJoueurs(); i++){
-					System.out.println((i+1) + "." + this.getPlateau().getJoueur(i).getNom() + " : " + this.getPlateau().getJoueur(i).nbQuartiersReelDansCite() + " carte(s).");
+					System.out.println((i+1) + "." + this.getPlateau().getJoueur(i).getNom() + " : " + this.getPlateau().getJoueur(i).nbQuartiersDansCite() + " carte(s).");
 				}
 				int choix = ThreadLocalRandom.current().nextInt(0,this.getPlateau().getNombreJoueurs()+1) - 1;
 
 				if(choix != -1){
-					if(this.getPlateau().getPersonnage(choix).nom.equals(this.nom)){
+					if(this.getPlateau().getPersonnage(choix).getNom().equals(this.getNom())){
 					throw new SelfChosen();
-					}else if(this.getPlateau().getPersonnage(choix).nom.equals("Eveque")) {
+					}else if(this.getPlateau().getPersonnage(choix).getNom().equals("Eveque")) {
 						throw new CantChoose();
 					}
 					Quartier[] citeJoueur = this.getPlateau().getJoueur(choix).getCite();
 
-					for(int i=0; i<this.getPlateau().getJoueur(choix).nbQuartiersReelDansCite(); i++) {
+					for(int i=0; i<this.getPlateau().getJoueur(choix).nbQuartiersDansCite(); i++) {
 						if(citeJoueur[i].getNom().equals("Grande Muraille")) {
 							aGrandeMuraille = true;
 						}
@@ -193,19 +193,19 @@ public class Capitaine extends Personnage{
 					
 
 					ArrayList<Quartier> copie = new ArrayList<Quartier>();
-					for(int i=0; i<this.getPlateau().getJoueur(choix).nbQuartiersReelDansCite(); i++) {
-						if(citeJoueur[i].getCout()<=3 && this.getJoueur().quartierPresentDansCite(citeJoueur[i].getNom()) == false) {
+					for(int i=0; i<this.getPlateau().getJoueur(choix).nbQuartiersDansCite(); i++) {
+						if(citeJoueur[i].getCoutConstruction()<=3 && !this.getJoueur().quartierPresentDansCite(citeJoueur[i].getNom())) {
 							copie.add(citeJoueur[i]);
 						}
 					}
-					if(copie.size() == 0) {
+					if(copie.isEmpty()) {
 						System.out.println("Ce joueur n'a pas de quartier rentrant dans les crit�res de votre pouvoir");
 						repeter = true;
 					}else {
 						boolean continu = false;
 						do{
 							for(int i =0; i<copie.size(); i++) {
-								System.out.println((i+1) + " - " + copie.get(i).getNom() + "[ " + copie.get(i).getType() + ", " + copie.get(i).getCout() + " ]");
+								System.out.println((i+1) + " - " + copie.get(i).getNom() + "[ " + copie.get(i).getType() + ", " + copie.get(i).getCoutConstruction() + " ]");
 							}
 			
 							System.out.println("Veuillez choisir le quartier a prendre (0 pour ne rien faire)");
@@ -219,12 +219,12 @@ public class Capitaine extends Personnage{
 			
 								}else{
 									System.out.println("Voulez vous construire " + this.getPlateau().getJoueur(choix).getCite()[choix1].getNom() + " ?");
-									Boolean choixConstruct = generateur.nextBoolean();
+									boolean choixConstruct = generateur.nextBoolean();
 									if(choixConstruct) {
-										if(this.getJoueur().nbPieces()>= this.getPlateau().getJoueur(choix).getCite()[choix1].getCout()) {
+										if(this.getJoueur().nbPieces()>= this.getPlateau().getJoueur(choix).getCite()[choix1].getCoutConstruction()) {
 											this.getJoueur().ajouterQuartierDansCite(this.getPlateau().getJoueur(choix).getCite()[choix1]);
-											this.getJoueur().retirerPieces(this.getPlateau().getJoueur(choix).getCite()[choix1].getCout() + prixEnPlus);
-											this.getPlateau().getJoueur(choix).ajouterPieces(this.getPlateau().getJoueur(choix).getCite()[choix1].getCout() + prixEnPlus);
+											this.getJoueur().retirerPieces(this.getPlateau().getJoueur(choix).getCite()[choix1].getCoutConstruction() + prixEnPlus);
+											this.getPlateau().getJoueur(choix).ajouterPieces(this.getPlateau().getJoueur(choix).getCite()[choix1].getCoutConstruction() + prixEnPlus);
 											this.getPlateau().getJoueur(choix).retirerQuartierDansCite(this.getPlateau().getJoueur(choix).getCite()[choix1].getNom());
 											
 											continu = false;
