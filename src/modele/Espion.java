@@ -17,7 +17,7 @@ public class Espion extends Personnage {
         int choixJ;
         do {
             System.out.println("Choisissez un joueur (vous ne pouvez pas vous choisir) (0 pour ne choisir personne): ");
-            choixJ = Interaction.lireUnEntier(0, this.getPlateau().getNombreJoueurs())-1;
+            choixJ = Interaction.lireUnEntier(0, this.getPlateau().getNombreJoueurs()+1)-1;
             if(choixJ==-1){
                 break;
             }else if(this.getPlateau().getJoueur(choixJ).nbQuartiersDansMain()==0){
@@ -27,7 +27,7 @@ public class Espion extends Personnage {
         } while (this.getPlateau().getJoueur(choixJ)==this.getJoueur()||this.getPlateau().getJoueur(choixJ).nbQuartiersDansMain()==0);
         if(choixJ!=-1){
             System.out.println("Choisissez le type de Quartier(1 pour RELIGIEUX, 2 pour MILITAIRES, 3 pour NOBLES, 4 pour COMMERCANT, 5 pour MERVEILLE): ");
-            int choixQ = Interaction.lireUnEntier(1, 5)-1;
+            int choixQ = Interaction.lireUnEntier(1, 6)-1;
             int compteur = 0;
             for(int i=0; i<this.getPlateau().getJoueur(choixJ).nbQuartiersDansMain(); i++){
                 Quartier q = this.getPlateau().getJoueur(choixJ).getMain().get(i);

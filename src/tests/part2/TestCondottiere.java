@@ -2,7 +2,7 @@ package tests.part2;
 
 import modele.*;
 
-import tests.Test;
+import tests.part1.Test;
 
 public class TestCondottiere {
 	public static void main(String[] args) {

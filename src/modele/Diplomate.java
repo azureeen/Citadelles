@@ -50,10 +50,9 @@ public class Diplomate extends Personnage {
                 boolean oui = Interaction.lireOuiOuNon();
                 boolean continu2 = true;
                 if(oui && !(this.getJoueur().nbQuartiersDansCite()==0)){
-
                     System.out.println("Choisissez le quartier que vous voulez échanger: ");
-                    int indxQuartierDiplo = Interaction.lireUnEntier(1, joueurDiplo.nbQuartiersDansCite())-1;
-                    Quartier quartierDiplo = joueurDiplo.getCite()[indxQuartierDiplo];
+                    int indxQuartierDiplo = Interaction.lireUnEntier(1, joueurDiplo.nbQuartiersDansCite()+1);
+                    Quartier quartierDiplo = joueurDiplo.getCite()[indxQuartierDiplo-1];
                     System.out.println("Vous avez choisi "+quartierDiplo.getNom());
 
 
@@ -67,12 +66,12 @@ public class Diplomate extends Personnage {
                         System.out.println((i+1)+". "+joueur.getNom()); //montrer les personnages avec leurs quartiers
                         Quartier[] cite = joueur.getCite();
                         for (Quartier quartier : cite){
-                            System.out.println("   "+"Nom: "+quartier.getNom()+", cout: "+quartier.getCoutConstruction()+", type: "+quartier.getType());
+                            if (quartier != null) System.out.println("   "+"Nom: "+quartier.getNom()+", cout: "+quartier.getCoutConstruction()+", type: "+quartier.getType());
                         }
                     }
                     do {
                         System.out.print("Votre choix d'adversaire à voler : (0 pour ne rien faire) ");
-                        int choix = Interaction.lireUnEntier(0, this.getPlateau().getNombreJoueurs()) - 1;
+                        int choix = Interaction.lireUnEntier(0, this.getPlateau().getNombreJoueurs()+1)-1;
 
 
 
@@ -100,15 +99,15 @@ public class Diplomate extends Personnage {
                                 int j =0;
                                 for (Quartier quartier : citJoueur){
                                     if(quartier != null){
-                                        System.out.println(j+". "+"Nom: "+quartier.getNom()+", cout: "+quartier.getCoutConstruction()+", type: "+quartier.getType()+".");
+                                        System.out.println(j+1+". "+"Nom: "+quartier.getNom()+", cout: "+quartier.getCoutConstruction()+", type: "+quartier.getType()+".");
                                         j++;
                                     }else{
                                         break;
                                     }
                                 }
 
-                                int indxQuartierAdv = Interaction.lireUnEntier(1, joueurChoisi.nbQuartiersDansCite())-1;
-                                Quartier quartierAdv = joueurChoisi.getCite()[indxQuartierAdv];
+                                int indxQuartierAdv = Interaction.lireUnEntier(1, joueurChoisi.nbQuartiersDansCite()+1);
+                                Quartier quartierAdv = joueurChoisi.getCite()[indxQuartierAdv -1];
                                 boolean presentChezAdv = false;
                                 for(int i=0; i<joueurChoisi.nbQuartiersDansCite();i++){
                                     if(quartierDiplo.getNom().equals(joueurChoisi.getCite()[i].getNom())){
@@ -222,9 +221,9 @@ public class Diplomate extends Personnage {
                 boolean oui = random.nextBoolean();
                 boolean continu2 = true;
                 if(oui && !(this.getJoueur().nbQuartiersDansCite()==0)){
-
                     System.out.println("Choisissez le quartier que vous voulez échanger: ");
                     int indxQuartierDiplo = random.nextInt(joueurDiplo.nbQuartiersDansCite());
+
                     Quartier quartierDiplo = joueurDiplo.getCite()[indxQuartierDiplo];
                     System.out.println("Vous avez choisi "+quartierDiplo.getNom());
 

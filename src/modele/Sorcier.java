@@ -14,7 +14,7 @@ public class Sorcier extends Personnage {
         for (int i=0; i<this.getPlateau().getNombreJoueurs(); i++){
             Joueur joueur = this.getPlateau().getJoueur(i);
             if(joueur.getPersonnage().getRang() != 3){
-                System.out.println((i+1)+". "+ joueur.getNom());
+                System.out.println((i)+". "+ joueur.getNom());
             }
         }  
 

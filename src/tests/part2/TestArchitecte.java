@@ -1,12 +1,7 @@
 package tests.part2;
 
-import modele.Caracteristiques;
-import modele.Architecte;
-import modele.Joueur;
-import modele.Pioche;
-import modele.PlateauDeJeu;
-import modele.Quartier;
-import tests.Test;
+import modele.*;
+import tests.part1.Test;
 
 public class TestArchitecte {
 

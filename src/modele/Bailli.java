@@ -16,7 +16,7 @@ public class Bailli extends Personnage {
      */
     public void utiliserPouvoir(){
         if(Jeu.orDesTaxes != 0){
-            boolean recupererLOr = false;
+            boolean recupererLOr;
             System.out.println("Voulez-vous récupérer l'or des taxes ?");
             recupererLOr = Interaction.lireOuiOuNon();
 
