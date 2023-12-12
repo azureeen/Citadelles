@@ -2,7 +2,7 @@
 
 ## Description
 
-Ce projet est une implémentation du célèbre jeu "Citadelles" dans le cadre du cours de développement Logiciel à l'ESAIP. Il s'agit d'une version textuelle jouable en ligne de commande, reflétant les mécanismes et la stratégie du jeu de plateau original. Cette version représente une étape intermédiaire du projet et est toujours en cours de développement.
+Ce projet est une implémentation du célèbre jeu "Citadelles". Il s'agit d'une version textuelle jouable en ligne de commande, reflétant les mécanismes et la stratégie du jeu de plateau original. 
 
 ## Développement en Cours
 
