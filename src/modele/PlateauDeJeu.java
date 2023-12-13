@@ -62,8 +62,6 @@ public class PlateauDeJeu {
      * Renvoie la liste des personnages
      * @return listePersonnages
      */
-    public Personnage[] getListePersonnages() {
-
     public Personnage[] getListPersonnages() {
         return this.listePersonnages;
     }
@@ -145,5 +143,9 @@ public class PlateauDeJeu {
                 }
             }
         }
+    }
+
+    public Personnage[] getListePersonnages() {
+        return this.listePersonnages;
     }
 }

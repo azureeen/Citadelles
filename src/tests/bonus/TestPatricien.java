@@ -6,7 +6,7 @@ import modele.Quartier;
 import modele.Patricien;
 import modele.Pioche;
 import modele.PlateauDeJeu;
-import tests.part1.Test;
+import tests.Test;
 
 public class TestPatricien {
 

@@ -1,7 +1,7 @@
 package tests.part2;
 
 import modele.*;
-import tests.part1.Test;
+import tests.Test;
 
 public class TestArchitecte {
 

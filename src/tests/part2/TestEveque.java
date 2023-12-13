@@ -4,7 +4,7 @@ import modele.Caracteristiques;
 import modele.Joueur;
 import modele.Quartier;
 import modele.Eveque;
-import tests.part1.Test;
+import tests.Test;
 
 public class TestEveque {
 

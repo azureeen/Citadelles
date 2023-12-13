@@ -1,7 +1,7 @@
 package tests.bonus;
 import application.Jeu;
 import modele.*;
-import tests.part1.Test;
+import tests.Test;
 
 public class TestBailli {
 

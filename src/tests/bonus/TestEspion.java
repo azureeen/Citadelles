@@ -1,7 +1,7 @@
 package tests.bonus;
 
 import modele.*;
-import tests.part1.Test;
+import tests.Test;
 
 public class TestEspion {
 

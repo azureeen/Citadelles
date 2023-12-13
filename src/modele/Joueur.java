@@ -175,7 +175,7 @@ public class Joueur {
         return this.monPersonnage;
     }
 
-     * Renvoie la valeur de l'attribut monPersonnage
+    /** Renvoie la valeur de l'attribut monPersonnage
      * @return l'attribut monPersonnage
      */
     public Personnage getmonPersonnage(){return this.monPersonnage;}

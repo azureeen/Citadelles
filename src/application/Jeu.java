@@ -1612,7 +1612,7 @@ public class Jeu {
 
                 System.out.println("Choisissez un personnage à prendre :`\n");
                 if(listeJoueur.get(joueur).getNom().equals("Joueur")){
-                    choix = interaction.lireUnEntier(1, listePersonnage.size())-1;
+                    choix = interaction.lireUnEntier(1, listePersonnage.size()+1)-1;
                 }else{
                     choix = generateur.nextInt(listePersonnage.size());
                 }

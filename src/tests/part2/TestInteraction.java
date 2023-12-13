@@ -1,7 +1,7 @@
 package tests.part2;
 
 import Controleur.Interaction;
-import tests.part1.Test;
+import tests.Test;
 
 
 public class TestInteraction {
